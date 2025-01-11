@@ -81,3 +81,15 @@ interface UtilsDate {
 }
 
 export const date: UtilsDate;
+
+// Submodule: http
+
+interface UtilsHTTP {
+  parseHost(host: string): string;
+  parseCookies(cookie: string): Record<string, string>;
+  createParams(params: string[][] | Record<string, string> | string | URLSearchParams): string;
+  parseParams(params: string[][] | Record<string, string> | string | URLSearchParams): Record<string, string>;
+  parseURL(pathname: string): URL;
+}
+
+export const http: UtilsHTTP;
