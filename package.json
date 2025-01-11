@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "name": "naughty-util",
+  "version": "0.1.0",
+  "author": "naughtysora <naughtysora@proton.me>",
+  "license": "MIT",
+  "description": "Util functions for node.js, part of naughty-stack",
+  "main": "main.js",
+  "types": "main.d.ts",
+  "readmeFilename": "README.md",
+  "browser": {
+    "main.js": "/dist/main.js"
+  },
+  "files": [
+    "dist/",
+    "lib/",
+    "main.d.ts"
+  ],
+  "engines": {
+    "node": "18 || 19 || 20 || 21 || 22 || 23"
+  },
+  "scripts": {
+    "types": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2"
+  }
+}
