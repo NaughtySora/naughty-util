@@ -1,23 +1,14 @@
 "use strict";
 
-const abstract = require("./lib/abstract");
-const array = require("./lib/array");
-const async = require("./lib/async");
-const buffer = require("./lib/buffer");
-const date = require("./lib/date");
-const http = require("./lib/http");
-const mixin = require("./lib/mixin");
-const number = require("./lib/number");
-const util = require("./lib/util");
-
 module.exports = {
-  abstract,
-  array,
-  async,
-  buffer,
-  date,
-  http,
-  mixin,
-  number,
-  util
+  abstract: require("./lib/abstract.js"),
+  array: require("./lib/array.js"),
+  async: require("./lib/async.js"),
+  buffer: require("./lib/buffer.js"),
+  date:require("./lib/date.js"),
+  http: require("./lib/http.js"),
+  mixin: require("./lib/mixin.js"),
+  number: require("./lib/number.js"),
+  misc: require("./lib/misc.js"),
+  stream: require("./lib/stream.js"),
 };

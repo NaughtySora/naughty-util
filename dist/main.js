@@ -4,7 +4,7 @@ import date from "../lib/date";
 import http from "../lib/http";
 import mixin from "../lib/mixin";
 import number from "../lib/number";
-import util from "../lib/util";
+import misc from "../lib/misc";
 
 export {
   array,
@@ -13,5 +13,5 @@ export {
   http,
   mixin,
   number,
-  util,
+  misc,
 }
