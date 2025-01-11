@@ -12,4 +12,4 @@ First utils implementation
 
 - Typing
 - Tests
-- questionable functions removed
+- Questionable functions removed
