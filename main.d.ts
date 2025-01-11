@@ -54,3 +54,13 @@ interface UtilsNumber {
 }
 
 export const number: UtilsNumber;
+
+
+// Submodule: mixin
+
+interface UtilsMixin {
+  weakAssign<T extends object, M extends object>(target: T, minix: M): M & T;
+  forget<T extends object, K extends keyof T>(target: T, keys: K[]): any;
+}
+
+export const mixin: UtilsMixin;
