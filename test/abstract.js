@@ -1,6 +1,8 @@
+"use strict";
+
 const assert = require("node:assert");
 const test = require("./test");
-const abstract = require("../lib/abstract");
+const { abstract } = require("../main");
 
 const dataset = {
   sum: (a, b) => a + b,

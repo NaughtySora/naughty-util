@@ -1,6 +1,7 @@
+"use strict";
 const assert = require("node:assert");
 const test = require("./test");
-const number = require("../lib/number");
+const { number } = require("../main");
 
 const average = () => {
   const mock = [22, 42, 512, 69, 33];

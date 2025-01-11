@@ -20,7 +20,7 @@
     "node": "18 || 19 || 20 || 21 || 22 || 23"
   },
   "scripts": {
-    "types": "tsc -p tsconfig.json",
+    "types": "tsc -p ./tsconfig.json",
     "test": "node ./test/index.js"
   },
   "repository": {
