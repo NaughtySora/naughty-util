@@ -22,6 +22,14 @@
   "scripts": {
     "types": "tsc -p tsconfig.json"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaughtyySora/naughty-util"
+  },
+  "bugs": {
+    "url": "https://github.com/NaughtyySora/naughty-util/issues",
+    "email": "naughtysora@proton.me"
+  },
   "devDependencies": {
     "@types/node": "^22.10.5",
     "typescript": "^5.7.2"
