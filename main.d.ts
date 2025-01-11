@@ -22,7 +22,7 @@ interface Thenable<T> {
 }
 interface UtilsAsync {
   promisify<T extends (...args: any) => any>(fn: T): (...params: Parameters<T>) => any;
-  compose<T extends (...args: any) => any>(...fns: T[]): (...args: any[]) => Promise<any>;
+  compose<T extends (...args: any) => Promise<any>>(...fns: T[]): (...args: any[]) => Promise<any>;
   thenable(fn: (...args: [...any, (err: any, data: any) => any]) => any, ...params: any[]): Thenable<any>;
 }
 
@@ -93,3 +93,13 @@ interface UtilsHTTP {
 }
 
 export const http: UtilsHTTP;
+
+// Submodule: misc
+
+interface UtilsMisc {
+  id<T>(entity: T): T;
+  inRange<T>(value: T, min: T, max: T): boolean;
+  compose<T extends (...args: any) => any>(...fns: T[]): (...args: any[]) => any;
+}
+
+export const misc: UtilsHTTP;
