@@ -67,4 +67,4 @@ const isSafe = () => {
   }
 };
 
-test.sync([average, total, cutFraction, positiveInt, safe, isSafe], "numbers");
+test.sync([average, total, cutFraction, positiveInt, safe, isSafe], "number");
