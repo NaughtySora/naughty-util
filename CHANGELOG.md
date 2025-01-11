@@ -6,7 +6,7 @@ First utils implementation
 
 - basic utils for daily use.
 
-- ## [0.2.0] - 2025-01-11
+## [0.2.0] - 2025-01-11
 
 First utils implementation
 
