@@ -9,6 +9,6 @@ module.exports = {
   http: require("./lib/http.js"),
   mixin: require("./lib/mixin.js"),
   number: require("./lib/number.js"),
-  util: require("./lib/util.js"),
+  misc: require("./lib/misc.js"),
   stream: require("./lib/stream.js"),
 };

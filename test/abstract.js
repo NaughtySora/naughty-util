@@ -1,7 +1,7 @@
 "use strict";
 
 const assert = require("node:assert");
-const test = require("./test");
+const test = require("./framework.js");
 const { abstract } = require("../main");
 
 const dataset = {

@@ -55,7 +55,6 @@ interface UtilsNumber {
 
 export const number: UtilsNumber;
 
-
 // Submodule: mixin
 
 interface UtilsMixin {
@@ -64,3 +63,21 @@ interface UtilsMixin {
 }
 
 export const mixin: UtilsMixin;
+
+// Submodule: date
+
+interface UtilsDate {
+  verbalEpoch(input: string): number;
+  verbal(input: string): number;
+  unix(input: ConstructorParameters<DateConstructor>[0]): number;
+  midnightUTC(input: ConstructorParameters<DateConstructor>[0]): number;
+  midnight(input: ConstructorParameters<DateConstructor>[0]): number;
+  difference(target: ConstructorParameters<DateConstructor>[0], base: ConstructorParameters<DateConstructor>[0]): number;
+  reached(target: ConstructorParameters<DateConstructor>[0], base: ConstructorParameters<DateConstructor>[0]): boolean;
+  DAY: number;
+  HOUR: number;
+  MINUTE: number;
+  SECOND: number;
+}
+
+export const date: UtilsDate;

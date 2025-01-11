@@ -1,6 +1,6 @@
 "use strict";
 const assert = require("node:assert");
-const test = require("./test");
+const test = require("./framework.js");
 const { number } = require("../main");
 
 const average = () => {
