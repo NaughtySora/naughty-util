@@ -2,12 +2,23 @@ const assert = require("node:assert");
 const test = require("./test");
 const abstract = require("../lib/abstract");
 
-
 const dataset = {
   sum: (a, b) => a + b,
   multi: (a, b) => a * b,
   pow: (base, power) => base ** power,
 };
+
+class TestPool {
+  constructor(smth) {
+    this.items = [smth];
+  }
+
+  get() {
+    return this.items.shift();
+  }
+}
+const DATES = ["2024-12-11"];
+const DATA = { data: "Hello" };
 
 const factorify = () => {
   const math = abstract.factorify(dataset, dataset.pow);
@@ -32,18 +43,6 @@ const factorify = () => {
 };
 
 const factory = () => {
-  class TestPool {
-    constructor(smth) {
-      this.items = [smth];
-    }
-
-    get() {
-      return this.items.shift();
-    }
-  }
-  const DATES = ["2024-12-11"];
-  const DATA = { data: "Hello" };
-
   const date = abstract.factory(Date, DATES[0]);
   const array = abstract.factory(Array, 3);
   const pool = abstract.factory(TestPool, DATA);
