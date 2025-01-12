@@ -7,6 +7,11 @@
   "main": "main.js",
   "types": "main.d.ts",
   "readmeFilename": "README.md",
+  "keywords": [
+    "node.js",
+    "helpers",
+    "util"
+  ],
   "browser": {
     "main.js": "/dist/main.js"
   },

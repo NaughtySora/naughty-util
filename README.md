@@ -14,3 +14,20 @@ try {
   console.log(err);
 }
 ```
+
+```js
+const { number } = require("naughty-util");
+
+const result = number.total([1,2,3,4,5]);
+console.log(content); //15
+```
+
+```js
+const { misc } = require("naughty-util");
+
+for(const i of range(10)){
+  console.log(i);
+}
+```
+
+## part of naughty stack
