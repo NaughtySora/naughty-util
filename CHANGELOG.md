@@ -13,3 +13,12 @@ First utils implementation
 - Typing
 - Tests
 - Questionable functions removed
+
+## [0.3.0] - 2025-01-12
+
+First utils implementation
+
+- array accessor
+- async pause
+- misc projection, partial, range
+- fix typing for misc
