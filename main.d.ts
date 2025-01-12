@@ -12,6 +12,7 @@ export const abstract: UtilsAbstract;
 
 interface UtilsArray {
   valid(data: any): boolean;
+  accessor<T>(array: Array<T>, meta: Record<string | symbol, number>): Array<T>;
 }
 
 export const array: UtilsArray;
@@ -20,10 +21,12 @@ export const array: UtilsArray;
 interface Thenable<T> {
   then(resolve: typeof Promise.resolve<T>, reject: typeof Promise.reject): void;
 }
+
 interface UtilsAsync {
   promisify<T extends (...args: any) => any>(fn: T): (...params: Parameters<T>) => any;
   compose<T extends (...args: any) => Promise<any>>(...fns: T[]): (...args: any[]) => Promise<any>;
   thenable(fn: (...args: [...any, (err: any, data: any) => any]) => any, ...params: any[]): Thenable<any>;
+  pause(ms: number): Promise<void>;
 }
 
 export const async: UtilsAsync;
@@ -100,6 +103,9 @@ interface UtilsMisc {
   id<T>(entity: T): T;
   inRange<T>(value: T, min: T, max: T): boolean;
   compose<T extends (...args: any) => any>(...fns: T[]): (...args: any[]) => any;
+  range(end: number, start?: number, step?: number): Generator<number>;
+  partial<T extends (...args: any) => any>(fn: T, ...params: any[]): (...args: any[]) => any;
+  projection<T extends [string, string | T, (...args: any) => any], O extends object>(meta: T[], data: O): any;
 }
 
-export const misc: UtilsHTTP;
+export const misc: UtilsMisc;
