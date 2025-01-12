@@ -3,15 +3,14 @@
 
 ## Import utils for your project
 
-## Project is not published on npm! code below only use example for the future
-
 ```js
-const {async} = require("naughty-util");
+const { async } = require("naughty-util");
 const fs = require("node:fs");
 
-const main = async () => {
+try {
   const content = await async.thenable(fs.readFile, __filename, "utf-8");
   console.log(content);
-};
-main();
+} catch(err) {
+  console.log(err);
+}
 ```
