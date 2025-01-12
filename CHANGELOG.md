@@ -22,3 +22,8 @@ First utils implementation
 - async pause
 - misc projection, partial, range
 - fix typing for misc
+
+## [0.3.1] - 2025-01-12
+
+- code examples
+- key words
