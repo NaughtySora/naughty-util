@@ -33,3 +33,7 @@ First utils implementation
 - parameter path of parseURL renamed to pathname
 - amends for d.ts date.difference and reached
 - fix d.ts mixin parameter typo for mixin.weakAssign
+
+## [0.3.3] - 2025-01-13
+
+- browser support
