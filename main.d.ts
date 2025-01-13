@@ -61,7 +61,7 @@ export const number: UtilsNumber;
 // Submodule: mixin
 
 interface UtilsMixin {
-  weakAssign<T extends object, M extends object>(target: T, minix: M): M & T;
+  weakAssign<T extends object, M extends object>(target: T, mixin: M): M & T;
   forget<T extends object, K extends keyof T>(target: T, keys: K[]): any;
 }
 
@@ -75,8 +75,8 @@ interface UtilsDate {
   unix(input: ConstructorParameters<DateConstructor>[0]): number;
   midnightUTC(input: ConstructorParameters<DateConstructor>[0]): number;
   midnight(input: ConstructorParameters<DateConstructor>[0]): number;
-  difference(target: ConstructorParameters<DateConstructor>[0], base: ConstructorParameters<DateConstructor>[0]): number;
-  reached(target: ConstructorParameters<DateConstructor>[0], base: ConstructorParameters<DateConstructor>[0]): boolean;
+  difference(base: ConstructorParameters<DateConstructor>[0], target: ConstructorParameters<DateConstructor>[0]): number;
+  reached(base: ConstructorParameters<DateConstructor>[0], target: ConstructorParameters<DateConstructor>[0]): boolean;
   DAY: number;
   HOUR: number;
   MINUTE: number;
