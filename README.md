@@ -1,6 +1,9 @@
 # Naughty Util
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/NaughtyySora/naughty-util/blob/master/LICENSE)
 [![snyk](https://snyk.io/test/github/NaughtyySora/naughty-util/badge.svg)](https://snyk.io/test/github/NaughtyySora/naughty-util)
+[![npm version](https://badge.fury.io/js/naughty-util.svg)](https://badge.fury.io/js/naughty-util)
+[![NPM Downloads](https://img.shields.io/npm/dm/naughty-util)](https://www.npmjs.com/package/naughty-util)
+[![NPM Downloads](https://img.shields.io/npm/dt/naughty-util)](https://www.npmjs.com/package/naughty-util)
 ## Import utils for your project
 
 ```js
