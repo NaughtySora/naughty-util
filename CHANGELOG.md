@@ -27,3 +27,9 @@ First utils implementation
 
 - code examples
 - key words
+
+## [0.3.2] - 2025-01-13
+
+- parameter path of parseURL renamed to pathname
+- amends for d.ts date.difference and reached
+- fix d.ts mixin parameter typo for mixin.weakAssign

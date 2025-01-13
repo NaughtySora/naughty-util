@@ -1,6 +1,6 @@
 {
   "name": "naughty-util",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "naughtysora <naughtysora@proton.me>",
   "license": "MIT",
   "description": "Util functions for node.js, part of naughty-stack",
