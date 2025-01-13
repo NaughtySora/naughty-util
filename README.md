@@ -1,6 +1,6 @@
 # Naughty Util
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/NaughtyySora/naughty-util/blob/master/LICENSE)
-
+[![snyk](https://snyk.io/test/github/NaughtyySora/naughty-util/badge.svg)](https://snyk.io/test/github/NaughtyySora/naughty-util)
 ## Import utils for your project
 
 ```js
@@ -19,7 +19,7 @@ try {
 const { number } = require("naughty-util");
 
 const result = number.total([1,2,3,4,5]);
-console.log(content); //15
+console.log(result); //15
 ```
 
 ```js
