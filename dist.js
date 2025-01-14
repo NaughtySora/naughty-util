@@ -1,6 +1,6 @@
 "use strict";
 
-module.export = {
+module.exports = {
   abstract: require("./lib/abstract.js"),
   array: require("./lib/array.js"),
   async: require("./lib/async.js"),
@@ -9,4 +9,4 @@ module.export = {
   misc: require("./lib/misc.js"),
   mixin: require("./lib/mixin.js"),
   number: require("./lib/number.js"),
-}
+};
