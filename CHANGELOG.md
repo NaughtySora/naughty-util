@@ -37,3 +37,8 @@ First utils implementation
 ## [0.3.3] - 2025-01-13
 
 - browser support
+
+## [0.3.4] - 2025-01-14
+
+- browser support
+- number isSafe unnecessary code removed
