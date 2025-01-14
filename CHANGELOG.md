@@ -42,3 +42,8 @@ First utils implementation
 
 - browser support
 - number isSafe unnecessary code removed
+
+## [0.3.5] - 2025-01-14
+
+- typing update
+- thenable prevent error with no second callback to then()
