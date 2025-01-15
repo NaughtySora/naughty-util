@@ -51,3 +51,8 @@ First utils implementation
 ## [0.3.5a] - 2025-01-14
 
 - links to repository have changed
+
+## [0.3.6] - 2025-01-14
+
+- Async composition, sync composition change iteration loop, shift removed to 
+prevent mutation fns array and allow to reuse composition
