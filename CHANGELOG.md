@@ -48,11 +48,16 @@ First utils implementation
 - typing update
 - thenable prevent error with no second callback to then()
 
-## [0.3.5a] - 2025-01-14
+## [0.3.5a] - 2025-01-15
 
 - links to repository have changed
 
-## [0.3.6] - 2025-01-14
+## [0.3.6] - 2025-01-15
 
 - Async composition, sync composition change iteration loop, shift removed to 
 prevent mutation fns array and allow to reuse composition
+
+
+## [0.3.7] - 2025-01-15
+
+- date verbal regular expression removed
