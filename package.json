@@ -1,7 +1,7 @@
 {
   "name": "naughty-util",
-  "version": "0.3.5",
-  "author": "naughtysora <naughtysora@proton.me>",
+  "version": "0.3.5a",
+  "author": "NaughtySora <naughtysora@proton.me>",
   "license": "MIT",
   "description": "Util functions for node.js, part of naughty-stack",
   "main": "main.js",
@@ -29,10 +29,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NaughtyySora/naughty-util"
+    "url": "git+https://github.com/NaughtySora/naughty-util"
   },
   "bugs": {
-    "url": "https://github.com/NaughtyySora/naughty-util/issues",
+    "url": "https://github.com/NaughtySora/naughty-util/issues",
     "email": "naughtysora@proton.me"
   },
   "devDependencies": {

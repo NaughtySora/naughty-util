@@ -47,3 +47,7 @@ First utils implementation
 
 - typing update
 - thenable prevent error with no second callback to then()
+
+## [0.3.5a] - 2025-01-14
+
+- links to repository have changed
