@@ -57,7 +57,10 @@ First utils implementation
 - Async composition, sync composition change iteration loop, shift removed to 
 prevent mutation fns array and allow to reuse composition
 
-
 ## [0.3.7] - 2025-01-15
 
 - date verbal regular expression removed
+
+## [0.3.7a] - 2025-01-17
+
+- md interfaces, some examples
