@@ -64,3 +64,7 @@ prevent mutation fns array and allow to reuse composition
 ## [0.3.7a] - 2025-01-17
 
 - md interfaces, some examples
+
+## [0.3.7b] - 2025-01-18
+
+- README description fixed

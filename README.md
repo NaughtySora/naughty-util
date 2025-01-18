@@ -23,10 +23,13 @@ const example = abstract.factorify({
   payments: (user, id, message = "") => ({name: user.name,}),
 }, {user: null, id: 0});
 
-const result = example("cancel");
-console.log(result); // ({name: user.name, id, cancelled: true, message})
+const cancel = example("cancel");
+const result = cancel({user: "John Doe", id: 5, message: "Service sucks"});
+console.log(result); // {user: "John Doe", id: 5, cancelled: true, message: "Service sucks"}
+
 const nullable = example("randomText");
-console.log(nullable); // {user: null, id: 0}
+const default = nullable({user: "John Doe", id: 5, message: "Test nullable"});
+console.log(default); // {user: null, id: 0}
 ```
 
 ## Array utils
@@ -34,13 +37,13 @@ console.log(nullable); // {user: null, id: 0}
 - `valid(data: any): boolean`
 - `accessor<T>(array: Array<T>, meta: Record<string | symbol, number>): Array<T>`
 
-Access helps rid of unnamed values of the array
+Access helps rid of unnamed values of the array.
 
 ```js
 const user = ["John Doe", 18, true];
 const meta = {name: 0, age: 1, employed: 2};
 array.accessor(user, meta);
-console.log(user.name, user.age, user.employed); // John Doe", 18, true
+console.log(user.name, user.age, user.employed); // "John Doe", 18, true
 ```
 
 ## Async utils
@@ -50,7 +53,7 @@ console.log(user.name, user.age, user.employed); // John Doe", 18, true
 - `thenable<F extends Callback>(fn: F, ...params: Parameters<F>): Thenable<any>`
 - `pause(ms: number): Promise<void>`
 
-promisify allow to change callback last error first(errback) to Promise contract.
+promisify allow to change callback last error first(errback) contract to Promise.
 
 ```js
   const fsPromise = async.promisify(fs.readFile);
@@ -66,7 +69,7 @@ promisify allow to change callback last error first(errback) to Promise contract
 
 - `read<T extends NodeJS.ReadableStream>(readable: T): Thenable<Buffer>`
 
-read helps with reading stream/readable, http socket for example
+read helps with reading stream/readable, http socket for example.
 
 ```js
   const handler = async(req, res) => {
