@@ -74,6 +74,15 @@ interface UtilsMisc {
   projection<T extends [string, string | T, Callback], O extends object>(meta: T[], data: O): any;
 }
 
+type Set = (key: any, value: any) => void;
+interface Cache {
+  limit(count: number): this;
+  timeout(ms: number): this;
+  get(key: any): any;
+}
+
+type UtilsCache = ({ ms, max }?: { ms?: number, max?: number }) => Set & Cache;
+
 export const abstract: UtilsAbstract;
 export const array: UtilsArray;
 export const async: UtilsAsync;
@@ -84,3 +93,4 @@ export const mixin: UtilsMixin;
 export const date: UtilsDate;
 export const http: UtilsHTTP;
 export const misc: UtilsMisc;
+export const cache: UtilsCache;

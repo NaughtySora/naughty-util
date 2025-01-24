@@ -68,3 +68,9 @@ prevent mutation fns array and allow to reuse composition
 ## [0.3.7b] - 2025-01-18
 
 - README description fixed
+
+## [0.4.0] - 2025-01-24
+
+- Number utils percentOf, percentRatio
+- Cache module
+- tests, types
