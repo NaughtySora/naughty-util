@@ -74,3 +74,8 @@ prevent mutation fns array and allow to reuse composition
 - Number utils percentOf, percentRatio
 - Cache module
 - tests, types
+
+## [0.4.1] - 2025-01-24
+
+- README
+- types for number fix

@@ -36,6 +36,8 @@ interface UtilsNumber {
   cutFraction(value: number): number;
   total(dataset: number[]): number;
   average(dataset: number[]): number;
+  percentRatio(amount: number, part: number): number;
+  percentOf(base: number, percent: number): number;
 }
 
 interface UtilsMixin {
