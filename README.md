@@ -86,6 +86,8 @@ read helps with reading stream/readable, http socket for example.
 - `cutFraction(value: number): number`
 - `total(dataset: number[]): number`
 - `average(dataset: number[]): number`
+- `percentRatio(amount: number, part: number): number`
+- `percentOf(base: number, percent: number): number`
 
 ## mixin utils
 
@@ -122,5 +124,20 @@ read helps with reading stream/readable, http socket for example.
 - `range(end: number, start?: number, step?: number): Generator<number>`
 - `partial<F extends Callback>(fn: F, ...params: Partial<Parameters<F>>): (...params: any) => any`
 - `projection<T extends [string, string | T, Callback], O extends object>(meta: T[], data: O): any`
+
+## cache
+- `cache({ ms, max }?: { ms?: number, max?: number }) => Set & Cache`
+
+```js
+  const store = cache({ max: 3, ms: 5000 });
+  store("key", {data: 1});
+  store("buffer", Buffer.from("Hello"));
+  store("api-return", await someApi.get("something"));
+
+  const data = store.get("key"); // {data: 1}
+
+  store.limit(10); // max from 3 to 10;
+  store.timeout(1000); // ms from 5000 to 1000
+```
 
 ## Part of the naughty stack
