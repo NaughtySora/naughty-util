@@ -67,4 +67,52 @@ const isSafe = () => {
   }
 };
 
-test.sync([average, total, cutFraction, positiveInt, safe, isSafe], "number");
+const percentRatio = () => {
+  const mocks = [
+    [500, 25],
+    [0, 10],
+    [10, 0],
+    [0, 0],
+    [NaN, "3"],
+    [NaN, NaN],
+    ["asd", "test"],
+    [{}, { baz: 1 }],
+    [25, 25],
+    [33, 100],
+    [100, 10],
+    [200, 25]
+  ];
+  const expected = [5, 0, 0, 0, 0, 0, 0, 0, 100, 303.030303030303, 10, 12.5];
+  for (const mock of mocks) {
+    const index = mocks.indexOf(mock);
+    const [amount, part] = mock;
+    const percentOfTotal = number.percentRatio(amount, part);
+    assert.strictEqual(percentOfTotal, expected[index]);
+  }
+};
+
+const percentOf = () => {
+  const mocks = [
+    [500, 25],
+    [0, 10],
+    [10, 0],
+    [0, 0],
+    [NaN, "3"],
+    [NaN, NaN],
+    ["asd", "test"],
+    [{}, { baz: 1 }],
+    [25, 25],
+    [33, 100],
+    [100, 10],
+    [200, 25]
+  ];
+  const expected = [125, 0, 0, 0, 0, 0, 0, 0, 6.25, 33, 10, 50];
+  for (const mock of mocks) {
+    const index = mocks.indexOf(mock);
+    const [total, part] = mock;
+    const percentOfTotal = number.percentOf(total, part);
+    assert.strictEqual(percentOfTotal, expected[index]);
+  }
+};
+
+test.sync([average, total, cutFraction, positiveInt, safe, isSafe, percentRatio, percentOf], "number");
