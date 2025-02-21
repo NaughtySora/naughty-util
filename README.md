@@ -52,6 +52,7 @@ console.log(user.name, user.age, user.employed); // "John Doe", 18, true
 - `compose<F extends CallbackAsync>(...fns: F[]): (...params: Parameters<F>) => Promise<any>`
 - `thenable<F extends Callback>(fn: F, ...params: Parameters<F>): Thenable<any>`
 - `pause(ms: number): Promise<void>`
+- `parallel<F extends CallbackAsync>(...fns: F[]): (...params: Parameters<F>) => Promise<any>`
 
 promisify allow to change callback last error first(errback) contract to Promise.
 

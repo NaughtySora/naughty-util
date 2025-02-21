@@ -79,3 +79,7 @@ prevent mutation fns array and allow to reuse composition
 
 - README
 - types for number fix
+
+## [0.4.2] - 2025-02-21
+
+- async parallel
