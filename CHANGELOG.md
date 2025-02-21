@@ -82,4 +82,4 @@ prevent mutation fns array and allow to reuse composition
 
 ## [0.4.2] - 2025-02-21
 
-- Async parallel
+- async parallel
