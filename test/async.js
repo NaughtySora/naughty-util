@@ -19,7 +19,7 @@ const compose = async () => {
   const text = await toUpperFile(__filename, "utf-8");
   const cut = await first30(__filename);
   if (typeof text !== "string") assert.fail("No content");
-  assert.equal(cut.length, 30);
+  assert.strictEqual(cut.length, 30);
 };
 
 const thenable = async () => {
@@ -27,4 +27,31 @@ const thenable = async () => {
   if (typeof content !== "string") assert.fail("No content");
 };
 
-test.async([promisify, compose, thenable], "async");
+const parallel = async () => {
+  const x = async (x = 0) => x;
+  const x2 = async (x = 1) => x * x;
+  const composition = async.parallel(x, x2);
+  {
+    const [xResult, x2Result] = await composition();
+    assert.strictEqual(xResult, 0);
+    assert.strictEqual(x2Result, 1);
+  }
+  {
+    const arr = [1, 2, 3];
+    const [xResult, x2Result] = await composition(arr, 5);
+    assert.deepStrictEqual(xResult, arr);
+    assert.strictEqual(x2Result, 25);
+  }
+  {
+    const [xResult, x2Result] = await composition(undefined, 3);
+    assert.strictEqual(xResult, 0);
+    assert.strictEqual(x2Result, 9);
+  }
+  {
+    const [xResult, x2Result] = await composition("test");
+    assert.strictEqual(xResult, "test");
+    assert.strictEqual(x2Result, 1);
+  }
+};
+
+test.async([promisify, compose, thenable, parallel], "async");

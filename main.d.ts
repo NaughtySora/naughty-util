@@ -19,6 +19,7 @@ interface UtilsAsync {
   compose<F extends CallbackAsync>(...fns: F[]): (...params: Parameters<F>) => Promise<any>;
   thenable<F extends Callback>(fn: F, ...params: Parameters<F>): Thenable<any>;
   pause(ms: number): Promise<void>;
+  parallel<F extends CallbackAsync>(...fns: F[]): (...params: Parameters<F>) => Promise<any>;
 }
 
 interface UtilsBuffer {
