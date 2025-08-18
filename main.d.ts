@@ -12,6 +12,11 @@ interface UtilsAbstract {
 interface UtilsArray {
   valid(data: any): boolean;
   accessor<T>(array: Array<T>, meta: Record<string | symbol, number>): Array<T>;
+  shuffle<T>(array: Array<T>): Array<T>;
+  avg<T>(array: Array<T>): number;
+  max<T>(array: Array<T>): number;
+  min<T>(array: Array<T>): number;
+  sum<T>(array: Array<T>): number;
 }
 
 interface UtilsAsync {
@@ -27,7 +32,9 @@ interface UtilsBuffer {
 }
 
 interface UtilsStream {
-  read<T extends NodeJS.ReadableStream>(readable: T): Thenable<Buffer>;
+  read<S extends NodeJS.ReadableStream>(readable: S): Promise<Buffer>;
+  blob<S extends NodeJS.ReadableStream>(readable: S): Promise<Blob>;
+  utf8<S extends NodeJS.ReadableStream>(readable: S): Promise<string>;
 }
 
 interface UtilsNumber {
@@ -107,7 +114,7 @@ interface UtilsHTTP {
     415: 'Unsupported Media Type',
     416: 'Range Not Satisfiable',
     417: 'Expectation Failed',
-    418: "I'm a Teapot",
+    418: 'I\'m a Teapot',
     421: 'Misdirected Request',
     422: 'Unprocessable Entity',
     423: 'Locked',

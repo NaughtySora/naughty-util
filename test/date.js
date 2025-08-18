@@ -1,7 +1,7 @@
-"use strict";
-const assert = require("node:assert");
-const test = require("./framework");
-const { date } = require("../main");
+'use strict';
+const assert = require('node:assert');
+const test = require('./framework');
+const { date } = require('../main');
 
 const difference = () => {
   const later5000 = Date.now() + 5000;
@@ -36,14 +36,14 @@ const unix = () => {
 };
 
 const verbal = () => {
-  const time = date.verbal("2d 10s 20s 5m");
+  const time = date.verbal('2d 10s 20s 5m');
   const expected = date.DAY * 2 + 30 * date.SECOND + 5 * date.MINUTE;
   assert.strictEqual(time, expected);
 };
 
 const verbalEpoch = () => {
   const now = Date.now();
-  const time = date.verbalEpoch("2d 10s 20s 5m");
+  const time = date.verbalEpoch('2d 10s 20s 5m');
   const expected = (date.DAY * 2 + 30 * date.SECOND + 5 * date.MINUTE) + now;
   assert.strictEqual(time, expected);
 };
@@ -62,4 +62,4 @@ const midnight = () => {
   assert.strictEqual(midnight, expected);
 }
 
-test.sync([difference, reached, unix, verbal, verbalEpoch, midnightUTC, midnight], "date");
+test.sync([difference, reached, unix, verbal, verbalEpoch, midnightUTC, midnight], 'date');

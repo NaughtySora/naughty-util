@@ -1,17 +1,17 @@
-"use strict";
-const assert = require("node:assert");
-const test = require("./framework.js");
-const { cache, misc } = require("../main");
+'use strict';
+const assert = require('node:assert');
+const test = require('./framework.js');
+const { cache, misc } = require('../main');
 
 const cacheTest = () => {
   const store = cache({ max: 3, ms: 5000 });
   const mocks = [
     { a: 1, b: 2 },
     [1, 2, 3],
-    "Hello World!",
+    'Hello World!',
     Math.random(),
     JSON.stringify({ json: 123123213213 }),
-    Buffer.from("Some important text")
+    Buffer.from('Some important text')
   ];
 
   for (const mock of mocks) {
@@ -42,4 +42,4 @@ const cacheTest = () => {
   }
 };
 
-test.sync([cacheTest], "cache");
+test.sync([cacheTest], 'cache');

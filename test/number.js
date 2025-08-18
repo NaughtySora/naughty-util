@@ -1,7 +1,7 @@
-"use strict";
-const assert = require("node:assert");
-const test = require("./framework.js");
-const { number } = require("../main");
+'use strict';
+const assert = require('node:assert');
+const test = require('./framework.js');
+const { number } = require('../main');
 
 const average = () => {
   const mock = [22, 42, 512, 69, 33];
@@ -41,7 +41,7 @@ const cutFraction = () => {
 };
 
 const positiveInt = () => {
-  const mock = [0, -0, -10, 10, 245, 22.22, 33.45, -26.99, Infinity, -Infinity, NaN, {}, "a"];
+  const mock = [0, -0, -10, 10, 245, 22.22, 33.45, -26.99, Infinity, -Infinity, NaN, {}, 'a'];
   const expected = [true, true, false, true, true, false, false, false, false, false, false, false, false];
   for (let i = 0; i < mock.length; i++) {
     const actual = number.positiveInt(mock[i]);
@@ -50,7 +50,7 @@ const positiveInt = () => {
 };
 
 const safe = () => {
-  const mock = [0, -0, -10, 10, 245, 22.22, 33.45, -26.99, Infinity, -Infinity, NaN, "a", {}];
+  const mock = [0, -0, -10, 10, 245, 22.22, 33.45, -26.99, Infinity, -Infinity, NaN, 'a', {}];
   const expected = [0, 0, -10, 10, 245, 22.22, 33.45, -26.99, 0, 0, 0, 0, 0];
   for (let i = 0; i < mock.length; i++) {
     const actual = number.safe(mock[i]);
@@ -59,7 +59,7 @@ const safe = () => {
 };
 
 const isSafe = () => {
-  const mock = [0, -0, -10, 10, 245, 22.22, 33.45, -26.99, Infinity, -Infinity, NaN, "a", {}];
+  const mock = [0, -0, -10, 10, 245, 22.22, 33.45, -26.99, Infinity, -Infinity, NaN, 'a', {}];
   const expected = [true, true, true, true, true, true, true, true, false, false, false, false, false];
   for (let i = 0; i < mock.length; i++) {
     const actual = number.isSafe(mock[i]);
@@ -73,9 +73,9 @@ const percentRatio = () => {
     [0, 10],
     [10, 0],
     [0, 0],
-    [NaN, "3"],
+    [NaN, '3'],
     [NaN, NaN],
-    ["asd", "test"],
+    ['asd', 'test'],
     [{}, { baz: 1 }],
     [25, 25],
     [33, 100],
@@ -97,9 +97,9 @@ const percentOf = () => {
     [0, 10],
     [10, 0],
     [0, 0],
-    [NaN, "3"],
+    [NaN, '3'],
     [NaN, NaN],
-    ["asd", "test"],
+    ['asd', 'test'],
     [{}, { baz: 1 }],
     [25, 25],
     [33, 100],
@@ -115,4 +115,4 @@ const percentOf = () => {
   }
 };
 
-test.sync([average, total, cutFraction, positiveInt, safe, isSafe, percentRatio, percentOf], "number");
+test.sync([average, total, cutFraction, positiveInt, safe, isSafe, percentRatio, percentOf], 'number');

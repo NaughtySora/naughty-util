@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const SUCCESS = "SUCCESS";
-const FAIL = "FAIL";
+const SUCCESS = 'SUCCESS';
+const FAIL = 'FAIL';
 
-const sync = (tests, testName = "untitled",) => {
+const sync = (tests, testName = 'untitled',) => {
   const failed = [];
   const status = [];
   for (const test of tests) {
@@ -20,7 +20,7 @@ const sync = (tests, testName = "untitled",) => {
   return failed;
 };
 
-const async = async (tests, testName = "untitled",) => {
+const async = async (tests, testName = 'untitled',) => {
   const failed = [];
   const status = [];
   for (const test of tests) {

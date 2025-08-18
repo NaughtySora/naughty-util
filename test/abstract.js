@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const assert = require("node:assert");
-const test = require("./framework.js");
-const { abstract } = require("../main");
+const assert = require('node:assert');
+const test = require('./framework.js');
+const { abstract } = require('../main');
 
 const dataset = {
   sum: (a, b) => a + b,
@@ -19,15 +19,15 @@ class TestPool {
     return this.items.shift();
   }
 }
-const DATES = ["2024-12-11"];
-const DATA = { data: "Hello" };
+const DATES = ['2024-12-11'];
+const DATA = { data: 'Hello' };
 
 const factorify = () => {
   const math = abstract.factorify(dataset, dataset.pow);
-  const sum = math("sum");
-  const multi = math("multi");
-  const pow = math("pow");
-  const test = math("a");
+  const sum = math('sum');
+  const multi = math('multi');
+  const pow = math('pow');
+  const test = math('a');
   const actualSum = sum(1, 2);
   const actualMulti = multi(1, 2);
   const actualPow = pow(2, 3);
@@ -55,4 +55,4 @@ const factory = () => {
   assert.deepEqual(pool().get(), DATA);
 };
 
-test.sync([factorify, factory], "abstract");
+test.sync([factorify, factory], 'abstract');
