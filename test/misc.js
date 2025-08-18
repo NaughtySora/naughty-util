@@ -93,4 +93,7 @@ const projection = () => {
   });
 };
 
+// const r = misc.range(10, 0);
+// for(const i of misc.enumerate(r)) console.log(i);
+
 test.sync([inRange, compose, range, partial, projection], "misc");
