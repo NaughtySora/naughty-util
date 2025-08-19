@@ -59,13 +59,27 @@ describe('abstract', () => {
 
   it('Options', () => {
     const str = "test";
-    const option = new abstract.Option(str);
-    assert.strictEqual(option.unwrap(), str);
-    assert.strictEqual(option.valueOf(), "Some");
+    const some = new abstract.Option(str);
+    assert.strictEqual(some.unwrap(), str);
+    assert.strictEqual(some.valueOf(), "Some");
 
     const none = new abstract.Option();
     assert.strictEqual(none.unwrap(), undefined);
     assert.strictEqual(none.valueOf(), "None");
+
+    const error = new Error("err");
+    const value = [1, 2, 3];
+    const some2 = abstract.Option.from(value);
+    const some3 = abstract.Option.from(error);
+    const none2 = abstract.Option.from();
+
+    assert.deepStrictEqual(some2.unwrap(), value);
+    assert.deepStrictEqual(some3.unwrap(), error);
+    assert.strictEqual(none2.unwrap(), undefined);
+
+    assert.strictEqual(some2.valueOf(), "Some");
+    assert.strictEqual(some3.valueOf(), "Some");
+    assert.strictEqual(none2.valueOf(), "None");
   });
 
   it('Result', () => {
@@ -82,6 +96,20 @@ describe('abstract', () => {
     const err = new abstract.Result(error);
     assert.deepStrictEqual(err.unwrap(), error);
     assert.strictEqual(err.valueOf(), "Err");
+
+    const error2 = new Error("err");
+    const value = [1, 2, 3];
+    const res = abstract.Result.from(value);
+    const empty = abstract.Result.from();
+    const err2 = abstract.Result.from(error2);
+
+    assert.deepStrictEqual(res.unwrap(), value);
+    assert.strictEqual(empty.unwrap(), undefined);
+    assert.deepStrictEqual(err2.unwrap(), error2);
+
+    assert.strictEqual(res.valueOf(), "Ok");
+    assert.strictEqual(empty.valueOf(), "Ok");
+    assert.strictEqual(err2.valueOf(), "Err");
   });
 
   it('match', () => {
