@@ -10,4 +10,5 @@ module.exports = {
   mixin: require('./lib/mixin.js'),
   number: require('./lib/number.js'),
   cache: require('./lib/cache.js'),
+  adapters: require('./lib/adapters.js'),
 };

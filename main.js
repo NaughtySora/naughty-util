@@ -12,4 +12,5 @@ module.exports = {
   misc: require('./lib/misc.js'),
   stream: require('./lib/stream.js'),
   cache: require('./lib/cache.js'),
+  adapters: require('./lib/adapters.js'),
 };
