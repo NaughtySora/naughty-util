@@ -1,12 +1,9 @@
+import { UtilsAbstract } from "./types/utils";
+
 type Callback = (...args: any[]) => any;
 type CallbackAsync = (...args: any) => Promise<any>;
 interface Thenable<T> {
   then(resolve: (data: T) => any, reject?: (err: any) => any): void;
-}
-
-interface UtilsAbstract {
-  factorify<T, N, K extends keyof T>(dataset: T, nullable?: N): (key: K) => T[K] | N;
-  factory<T extends { new(): any }>(Interface: T, ...params: ConstructorParameters<T>): () => InstanceType<T>;
 }
 
 interface UtilsArray {
@@ -221,6 +218,7 @@ interface Cache {
 }
 
 type UtilsCache = ({ ms, max }?: { ms?: number, max?: number }) => Set & Cache;
+
 
 export const abstract: UtilsAbstract;
 export const array: UtilsArray;
