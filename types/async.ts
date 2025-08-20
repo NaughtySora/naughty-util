@@ -1,4 +1,5 @@
 import { Callback, CallbackAsync } from "./shared";
+
 export interface Thenable<T> {
   then(resolve: (data: T) => any, reject?: (err: any) => any): void;
 }

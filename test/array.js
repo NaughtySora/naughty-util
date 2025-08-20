@@ -65,6 +65,12 @@ describe("array", () => {
       const avg = array.avg(test, item => item.value);
       assert.strictEqual(avg, 25);
     });
+
+    it("invalid", () => {
+      const test = {};
+      const avg = array.avg(test, item => item.value);
+      assert.strictEqual(avg, 0);
+    });
   });
 
   describe("max", () => {
@@ -78,6 +84,12 @@ describe("array", () => {
       const test = [{ value: 42 }, { value: 8 }];
       const max = array.max(test, item => item.value);
       assert.strictEqual(max, 42);
+    });
+
+    it("invalid", () => {
+      const test = {};
+      const max = array.max(test, item => item.value);
+      assert.strictEqual(max, -Infinity);
     });
   });
 
@@ -93,6 +105,12 @@ describe("array", () => {
       const min = array.min(test, item => item.value);
       assert.strictEqual(min, 8);
     });
+
+    it("invalid", () => {
+      const test = {};
+      const min = array.min(test, item => item.value);
+      assert.strictEqual(min, Infinity);
+    });
   });
 
   describe("sum", () => {
@@ -106,6 +124,12 @@ describe("array", () => {
       const test = [{ value: 42 }, { value: 8 }];
       const sum = array.sum(test, item => item.value);
       assert.strictEqual(sum, 50);
+    });
+
+    it("invalid", () => {
+      const test = {};
+      const sum = array.sum(test, item => item.value);
+      assert.strictEqual(sum, 0);
     });
   });
 });
