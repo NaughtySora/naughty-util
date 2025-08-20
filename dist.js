@@ -15,4 +15,3 @@ module.exports = {
   reflection: require('./lib/reflection.js'),
   string: require('./lib/string.js'),
 };
-
