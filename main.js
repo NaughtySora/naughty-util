@@ -14,4 +14,5 @@ module.exports = {
   cache: require('./lib/cache.js'),
   adapters: require('./lib/adapters.js'),
   error: require('./lib/error.js'),
+  palette: require('./lib/palette.js'),
 };

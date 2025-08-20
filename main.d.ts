@@ -11,6 +11,7 @@ import { UtilsMisc } from "./types/misc";
 import { UtilsCache } from "./types/cache";
 import { UtilsAdapters } from "./types/adapters";
 import { UtilsError } from "./types/error";
+import { UtilsPalette } from "./types/palette";
 
 export const abstract: UtilsAbstract;
 export const array: UtilsArray;
@@ -25,3 +26,4 @@ export const misc: UtilsMisc;
 export const cache: UtilsCache;
 export const adapters: UtilsAdapters;
 export const error: UtilsError;
+export const palette: UtilsPalette;
