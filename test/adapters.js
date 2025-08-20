@@ -22,18 +22,16 @@ describe("adapters", async () => {
     const fn = () => 42;
     const LIMIT = 5;
     const wrapper = adapters.limit(fn, LIMIT);
-    Iterator.prototype.forEach.call(
-      misc.range(LIMIT, 1),
-      () => assert.strictEqual(wrapper(), fn()),
-    );
+    for (const _ of misc.range(LIMIT, 1)) {
+      assert.strictEqual(wrapper(), fn());
+    }
     assert.strictEqual(wrapper(), undefined);
     const message = "Error: limit";
     const err = () => { throw new Error(message); }
     const errWrapper = adapters.limit(err, LIMIT);
-    Iterator.prototype.forEach.call(
-      misc.range(LIMIT, 1),
-      () => assert.throws(() => errWrapper(), { message }),
-    );
+    for (const _ of misc.range(LIMIT, 1)) {
+      assert.throws(() => errWrapper(), { message });
+    }
     assert.strictEqual(errWrapper(), undefined);
   });
 
@@ -79,18 +77,14 @@ describe("adapters", async () => {
     const WAIT = 1000;
     const LIMIT = 10;
     const wrapper = adapters.throttle(test.method1.bind(test), WAIT, LIMIT);
-    Iterator.prototype.forEach.call(
-      misc.range(LIMIT, 1),
-      () => {
-        assert.strictEqual(wrapper(), test.method1())
-      },
-    );
+    for (const _ of misc.range(LIMIT, 1)) {
+      assert.strictEqual(wrapper(), test.method1());
+    }
     assert.strictEqual(wrapper(), undefined);
     await async.pause(WAIT);
-    Iterator.prototype.forEach.call(
-      misc.range(LIMIT, 1),
-      () => assert.strictEqual(wrapper(), test.method1()),
-    );
+    for (const _ of misc.range(LIMIT, 1)) {
+      assert.strictEqual(wrapper(), test.method1());
+    }
     assert.strictEqual(wrapper(), undefined);
 
     wrapper[Symbol.dispose]();
@@ -108,7 +102,7 @@ describe("adapters", async () => {
       assert.throws(() => {
         wrap();
       }, { message: "throttle wrapper has been disposed" });
-    })
+    });
   });
 
   it("scoped", () => {

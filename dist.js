@@ -11,4 +11,8 @@ module.exports = {
   number: require('./lib/number.js'),
   cache: require('./lib/cache.js'),
   adapters: require('./lib/adapters.js'),
+  error: require('./lib/error.js'),
+  reflection: require('./lib/reflection.js'),
+  string: require('./lib/string.js'),
 };
+

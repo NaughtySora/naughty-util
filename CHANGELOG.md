@@ -54,7 +54,7 @@ First utils implementation
 
 ## [0.3.6] - 2025-01-15
 
-- Async composition, sync composition change iteration loop, shift removed to 
+- Async composition, sync composition change iteration loop, shift removed to
 prevent mutation fns array and allow to reuse composition
 
 ## [0.3.7] - 2025-01-15
@@ -83,3 +83,21 @@ prevent mutation fns array and allow to reuse composition
 ## [0.4.2] - 2025-02-21
 
 - async parallel
+
+## [0.5.0] - 2025-08-20
+
+- adapters
+- string
+- palette
+- reflection
+- error
+- stream utf8
+- array aggregation, shuffle, sample
+- http codes
+- abstract Option, Result, match
+- misc enumerate, random, timestamp, unique
+- cache disposable
+- types
+- better tests
+- prettier
+- linter

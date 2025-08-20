@@ -1,4 +1,4 @@
-import { UtilsAbstract } from "./types/utils";
+import { UtilsAbstract } from "./types/abstract";
 import { UtilsArray } from "./types/array";
 import { UtilsAsync } from "./types/async";
 import { UtilsBuffer } from "./types/buffer";
