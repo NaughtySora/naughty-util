@@ -1,6 +1,6 @@
 {
   "name": "naughty-util",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": "NaughtySora <naughtysora@proton.me>",
   "license": "MIT",
   "description": "Util functions for node.js, part of naughty-stack",
@@ -18,7 +18,8 @@
   "files": [
     "dist.js",
     "lib/",
-    "main.d.ts"
+    "main.d.ts",
+    "types/"
   ],
   "engines": {
     "node": ">=18"
