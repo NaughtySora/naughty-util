@@ -12,6 +12,7 @@ import { UtilsCache } from "./types/cache";
 import { UtilsAdapters } from "./types/adapters";
 import { UtilsError } from "./types/error";
 import { UtilsPalette } from "./types/palette";
+import { UtilsReflection } from "./types/reflection";
 
 export const abstract: UtilsAbstract;
 export const array: UtilsArray;
@@ -27,3 +28,4 @@ export const cache: UtilsCache;
 export const adapters: UtilsAdapters;
 export const error: UtilsError;
 export const palette: UtilsPalette;
+export const reflection: UtilsReflection;
