@@ -1,6 +1,4 @@
-export type Callback = (...args: any[]) => any;
-export type CallbackAsync = (...args: any) => Promise<any>;
-
+import { Callback, CallbackAsync } from "./shared";
 export interface Thenable<T> {
   then(resolve: (data: T) => any, reject?: (err: any) => any): void;
 }

@@ -4,7 +4,7 @@
 //   'buffer', 'stream', 'array', 'mixin',
 //   'date', 'http', 'misc', 'cache'];
 
-const paths = ['abstract', 'adapters'];
+const paths = ['abstract', 'adapters', 'array'];
 
 for (const path of paths) require(`./${path}.js`);
 

@@ -339,10 +339,5 @@ describe("adapters", async () => {
       assert.strictEqual(wrapper(), undefined);
     });
   });
-
-  // it("promisify", () => {
-  //   adapters.promisify
-  // });
-
 });
 

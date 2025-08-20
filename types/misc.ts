@@ -1,4 +1,4 @@
-import { Callback } from "./async";
+import { Callback } from "./shared";
 
 export interface UtilsMisc {
   id<T>(entity: T): T;
