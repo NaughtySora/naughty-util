@@ -10,6 +10,7 @@ import { UtilsHTTP } from "./types/http";
 import { UtilsMisc } from "./types/misc";
 import { UtilsCache } from "./types/cache";
 import { UtilsAdapters } from "./types/adapters";
+import { UtilsError } from "./types/error";
 
 export const abstract: UtilsAbstract;
 export const array: UtilsArray;
@@ -23,3 +24,4 @@ export const http: UtilsHTTP;
 export const misc: UtilsMisc;
 export const cache: UtilsCache;
 export const adapters: UtilsAdapters;
+export const error: UtilsError;

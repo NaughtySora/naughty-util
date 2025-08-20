@@ -13,4 +13,5 @@ module.exports = {
   stream: require('./lib/stream.js'),
   cache: require('./lib/cache.js'),
   adapters: require('./lib/adapters.js'),
+  error: require('./lib/error.js'),
 };
