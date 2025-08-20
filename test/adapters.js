@@ -3,7 +3,6 @@
 const { adapters, misc, async } = require('../main.js');
 const { describe, it } = require('node:test');
 const assert = require('node:assert');
-const stream = require('node:stream');
 
 describe("adapters", async () => {
   it("once", () => {
@@ -283,14 +282,63 @@ describe("adapters", async () => {
     });
   });
 
-  // await describe("cancellable", async () => {
-  //   it("async", () => {
-  //     adapters.cancellable.async
-  //   });
-  //   it("sync", () => {
-  //     adapters.cancellable.sync
-  //   });
-  // });
+  await describe("cancellable", async () => {
+    await describe("async", async () => {
+      await it("signal/timeout", async () => {
+        const fn = async () => {
+          await async.pause(200);
+          return 42;
+        };
+        const signal = AbortSignal.timeout(120);
+        const wrapper = adapters.cancellable.async(fn, { signal });
+        await assert.rejects(async () => {
+          await wrapper();
+          throw new Error("never reached");
+        }, { message: "aborted" });
+      });
+
+      await it("signal/manually", async () => {
+        const fn = async () => {
+          await async.pause(200);
+          return 42;
+        };
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+        const wrapper = adapters.cancellable.async(fn, { signal: signal });
+
+        setTimeout(() => { controller.abort(); }, 50);
+
+        await assert.rejects(async () => {
+          await wrapper();
+          throw new Error("never reached");
+        }, { message: "aborted" });
+      });
+
+      await it("error", async () => {
+        const fn = async () => {
+          await async.pause(200);
+          throw new Error("Error: cancellable");
+        };
+
+        const signal = AbortSignal.timeout(1000);
+        const wrapper = adapters.cancellable.async(fn, { signal: signal });
+        await assert.rejects(async () => {
+          await wrapper();
+          throw new Error("never reached");
+        }, { message: "Error: cancellable" });
+      });
+    });
+
+    it("sync", () => {
+      const fn = () => 42;
+      const wrapper = adapters.cancellable.sync(fn);
+      assert.strictEqual(wrapper(), fn());
+      assert.strictEqual(wrapper(), fn());
+      wrapper.cancel();
+      assert.strictEqual(wrapper(), undefined);
+    });
+  });
 
   // it("promisify", () => {
   //   adapters.promisify

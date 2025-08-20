@@ -31,7 +31,7 @@ export interface UtilsAdapters {
     sync<F extends Callback>(fn: F, options?: LogableOptions): Wrapper<F>,
   },
   cancellable: {
-    sync<F extends Callback>(fn: F): Wrapper<F>,
     async<F extends CallbackAsync>(fn: F, options: CancellableOptions): AsyncWrapper<F>,
+    sync<F extends Callback>(fn: F): Wrapper<F> & { cancel(): void },
   },
 }
