@@ -25,7 +25,10 @@
   },
   "scripts": {
     "types": "tsc -p ./tsconfig.json",
-    "test": "node ./test/index.js"
+    "test": "node ./test/index.js",
+    "prettify": "npx prettier . --write",
+    "pretty-check": "npx prettier . --check",
+    "lint": "npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -36,7 +39,13 @@
     "email": "naughtysora@proton.me"
   },
   "devDependencies": {
+    "@eslint/js": "^9.33.0",
     "@types/node": "^22.10.5",
-    "typescript": "^5.7.2"
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
+    "eslint": "^9.33.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.40.0"
   }
 }
