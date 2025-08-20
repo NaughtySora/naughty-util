@@ -1,9 +1,8 @@
 'use strict';
 
-const { reflection } = require('../main.js');
+const { reflection, misc } = require('../main');
 const { describe, it } = require('node:test');
 const assert = require('node:assert');
-const { misc } = require('../main.js');
 
 const TESTS = [
   "",

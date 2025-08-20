@@ -16,4 +16,5 @@ module.exports = {
   error: require('./lib/error.js'),
   palette: require('./lib/palette.js'),
   reflection: require('./lib/reflection.js'),
+  string: require('./lib/string.js'),
 };

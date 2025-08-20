@@ -1,6 +1,6 @@
 'use strict';
 
-const { abstract } = require('../main.js');
+const { abstract } = require('../main');
 const { describe, it } = require('node:test');
 const assert = require('node:assert');
 

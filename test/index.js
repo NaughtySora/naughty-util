@@ -3,7 +3,7 @@
 const paths = ['abstract', 'adapters', 'array',
   'async', 'buffer', 'cache', 'date', 'error',
   'http', 'misc', 'mixin', 'number', 'palette', 
-  'reflection', 'stream'];
+  'reflection', 'stream', 'string'];
 
 for (const path of paths) require(`./${path}.js`);
 

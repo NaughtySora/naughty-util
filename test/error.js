@@ -1,6 +1,6 @@
 'use strict';
 
-const { error } = require('../main.js');
+const { error } = require('../main');
 const { describe, it } = require('node:test');
 const assert = require('node:assert');
 

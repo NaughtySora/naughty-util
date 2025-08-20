@@ -1,6 +1,6 @@
 'use strict';
 
-const { adapters, misc, async } = require('../main.js');
+const { adapters, misc, async } = require('../main');
 const { describe, it } = require('node:test');
 const assert = require('node:assert');
 
