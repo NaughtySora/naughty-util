@@ -1,7 +1,9 @@
-"use strict";
+'use strict';
 
-const paths = ["number.js", "abstract.js", "async.js",
-  "buffer.js", "stream.js", "array.js", "mixin.js",
-  "date.js", "http.js", "misc.js", "cache.js"];
+const paths = ['abstract', 'adapters', 'array',
+  'async', 'buffer', 'cache', 'date', 'error',
+  'http', 'misc', 'mixin', 'number', 'palette', 
+  'reflection', 'stream', 'string'];
 
-for (const path of paths) require(`./${path}`);
+for (const path of paths) require(`./${path}.js`);
+
