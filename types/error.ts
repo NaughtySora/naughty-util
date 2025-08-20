@@ -29,5 +29,3 @@ declare class DomainError<M extends string, C, D> extends Error {
 export interface UtilsError {
   DomainError: typeof DomainError;
 }
-
-const e = new DomainError();

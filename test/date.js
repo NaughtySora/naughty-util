@@ -38,14 +38,14 @@ describe('date', () => {
 
   it('verbal', () => {
     const time = date.verbal('2d 10s 20s 5m');
-    const expected = date.DAY * 2 + 30 * date.SECOND + 5 * date.MINUTE;
+    const expected = (date.DAY * 2) + (30 * date.SECOND) + (5 * date.MINUTE);
     assert.strictEqual(time, expected);
   });
 
   it('verbalEpoch', () => {
     const now = Date.now();
     const time = date.verbalEpoch('2d 10s 20s 5m');
-    const expected = (date.DAY * 2 + 30 * date.SECOND + 5 * date.MINUTE) + now;
+    const expected = ((date.DAY * 2) + (30 * date.SECOND) + (5 * date.MINUTE)) + now;
     assert.strictEqual(time, expected);
   });
 

@@ -33,7 +33,7 @@ describe("array", () => {
     assert.strictEqual(result[1], data[1]);
     assert.strictEqual(result[4], data[4]);
     assert.strictEqual(result[5], data[5]);
-    assert.deepEqual(result, data);
+    assert.deepStrictEqual(result, data);
   });
 
   it("shuffle", () => {
