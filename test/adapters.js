@@ -53,18 +53,31 @@ describe("adapters", async () => {
 
   await it("debounce", async () => {
     const THRESHOLD = 1000;
-    const every = Math.floor(THRESHOLD / 4);
-    let result = 0;
-    const wrapper = adapters.debounce((i) => void (result = i), THRESHOLD);
-    for (const i of misc.range(THRESHOLD, 0, every)) {
-      wrapper(i);
-      await async.pause(every);
+    {
+      let result = 0;
+      const wrapper = adapters.debounce((i) => void (result = i), THRESHOLD);
+      wrapper(1);
+      await async.pause(1000);
+      assert.strictEqual(result, 1);
+      wrapper[Symbol.dispose]();
+      assert.throws(() => {
+        wrapper();
+      }, { message: "debounce wrapper has been disposed" });
     }
-    assert.strictEqual(result, THRESHOLD - every);
-    wrapper[Symbol.dispose]();
-    assert.throws(() => {
-      wrapper();
-    }, { message: "debounce wrapper has been disposed" });
+    {
+      let result = 0;
+      const wrapper = adapters.debounce((i) => void (result = i), THRESHOLD);
+      wrapper(1);
+      await async.pause(100);
+      wrapper(42);
+      await async.pause(420);
+      wrapper(999);
+      await async.pause(1200);
+      wrapper(1200);
+      await async.pause(125);
+      assert.strictEqual(result, 999);
+      wrapper[Symbol.dispose]();
+    }
   });
 
   await describe("throttle", async () => {
