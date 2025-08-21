@@ -102,5 +102,5 @@ prevent mutation fns array and allow to reuse composition
 - prettier
 - linter
 
-## [0.5.2] - 2025-08-20
+## [0.5.2] - 2025-08-21
 - fix debounce bug
