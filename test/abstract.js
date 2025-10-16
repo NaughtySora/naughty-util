@@ -188,5 +188,9 @@ describe('abstract', () => {
       "Some": () => { throw new Error("Should never reach") },
       "None": (v) => assert.strictEqual(v, undefined),
     });
+
+    assert.throws(() => {
+      abstract.match(none2, {});
+    }, { message: "Can't find matched strategy" });
   });
 });

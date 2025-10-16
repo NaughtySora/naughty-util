@@ -17,4 +17,6 @@ module.exports = {
   palette: require('./lib/palette.js'),
   reflection: require('./lib/reflection.js'),
   string: require('./lib/string.js'),
+  logger: require('./lib/logger.js'),
+  iterator: require('./lib/iterator.js'),
 };

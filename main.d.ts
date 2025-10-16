@@ -14,6 +14,8 @@ import { UtilsError } from "./types/error";
 import { UtilsPalette } from "./types/palette";
 import { UtilsReflection } from "./types/reflection";
 import { UtilsString } from "./types/string";
+import { UtilsLogger } from "./types/logger";
+import { UtilsIterator } from "./types/iterator";
 
 export const abstract: UtilsAbstract;
 export const array: UtilsArray;
@@ -31,3 +33,5 @@ export const error: UtilsError;
 export const palette: UtilsPalette;
 export const reflection: UtilsReflection;
 export const string: UtilsString;
+export const iterator: UtilsIterator;
+export const logger: UtilsLogger;

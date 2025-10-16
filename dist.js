@@ -14,4 +14,5 @@ module.exports = {
   error: require('./lib/error.js'),
   reflection: require('./lib/reflection.js'),
   string: require('./lib/string.js'),
+  iterator: require('./lib/iterator.js'),
 };
