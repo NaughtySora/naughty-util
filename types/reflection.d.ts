@@ -1,3 +1,5 @@
+import { UtilsArray } from "./array";
+
 export interface UtilsReflection {
   isClass(entity: any): boolean;
   isEmpty(entity: any): boolean;
@@ -7,4 +9,5 @@ export interface UtilsReflection {
   isError(entity: any): boolean;
   isAsyncFunction(entity: any): boolean;
   isObject(entity: any): boolean;
+  isArray: UtilsArray["valid"];
 }

@@ -13,7 +13,7 @@ interface ToJSON<C, D, M> {
   stack: string;
 }
 
-declare class DomainError<M extends string, C, D> extends Error {
+declare class DomainError<M extends string = "", C = 400, D = null> extends Error {
   constructor(message?: M, options?: DomainErrorOptions<C, D>);
   toJSON(): ToJSON<C, D, M>;
   toString(): string;
