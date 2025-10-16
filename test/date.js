@@ -49,7 +49,7 @@ describe('date', () => {
       date.verbal('2a 10s 20s 5m');
     }, { message: "Wrong verbal format, available only '1d 2h 3m 4s' pattern" });
 
-    assert.strictEqual(date.verbal(1), undefined);
+    assert.strictEqual(date.verbal(1), 0);
   });
 
   it('verbalEpoch', () => {
