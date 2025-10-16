@@ -33,6 +33,10 @@ describe("array", () => {
     assert.strictEqual(result[1], data[1]);
     assert.strictEqual(result[4], data[4]);
     assert.strictEqual(result[5], data[5]);
+    result.address = 10;
+    result[car] = '42';
+    assert.strictEqual(result.address, 10);
+    assert.strictEqual(result[car], '42');
     assert.deepStrictEqual(result, data);
   });
 

@@ -34,12 +34,22 @@ describe('date', () => {
     const unix = date.unix(now);
     assert.strictEqual(String(unix).length, (String(now).length - 3));
     assert.strictEqual(unix, Math.floor(now / 1000));
+
+    assert.throws(() => {
+      date.unix('asd');
+    }, { message: 'Wrong date format' });
   });
 
   it('verbal', () => {
     const time = date.verbal('2d 10s 20s 5m');
     const expected = (date.DAY * 2) + (30 * date.SECOND) + (5 * date.MINUTE);
     assert.strictEqual(time, expected);
+
+    assert.throws(() => {
+      date.verbal('2a 10s 20s 5m');
+    }, { message: "Wrong verbal format, available only '1d 2h 3m 4s' pattern" });
+
+    assert.strictEqual(date.verbal(1), undefined);
   });
 
   it('verbalEpoch', () => {
@@ -54,6 +64,10 @@ describe('date', () => {
     const midnight = date.midnight(now);
     const expected = new Date().setHours(0, 0, 0, 0);
     assert.strictEqual(midnight, expected);
+
+    assert.throws(() => {
+      date.midnight('2q3');
+    }, { message: 'Wrong date format' });
   });
 
   it('midnightUTC', () => {
@@ -61,5 +75,9 @@ describe('date', () => {
     const midnight = date.midnightUTC(now);
     const expected = new Date().setUTCHours(0, 0, 0, 0);
     assert.strictEqual(midnight, expected);
+
+    assert.throws(() => {
+      date.midnightUTC('2q3');
+    }, { message: 'Wrong date format' });
   });
 });
