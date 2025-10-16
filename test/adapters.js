@@ -334,6 +334,10 @@ describe("adapters", async () => {
           await wrapper();
           throw new Error("never reached");
         }, { message: "Error: cancellable" });
+
+        await assert.rejects(async () => {
+          adapters.cancellable.async(fn);
+        }, { message: "async cancellable requires a signal" });
       });
     });
 

@@ -7,8 +7,8 @@ export interface UtilsMisc {
   range(end: number, start?: number, step?: number): Generator<number>;
   partial<F extends Callback>(fn: F, ...params: Partial<Parameters<F>>): (...params: any) => any;
   projection<T extends [string, string | T, Callback], O extends object>(meta: T[], data: O): any;
-  enumerate(iterable: Iterable<any>): Generator<[any, number]>;
+  enumerate<T>(iterable: Iterable<T>): Generator<[T, number]>;
   random(max: number, min?: number): number;
-  timestamp(): () => { nanoseconds: number, seconds: number },
+  timestamp(): () => { nanoseconds: number, seconds: number };
   unique(): string;
 }

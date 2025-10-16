@@ -31,6 +31,8 @@ describe("misc", async () => {
       const actual = fn(...params[i]);
       assert.deepStrictEqual(actual, expected[i]);
     }
+    const fn = misc.compose();
+    assert.deepStrictEqual(fn(), []);
   });
 
   it("range", () => {
@@ -80,6 +82,7 @@ describe("misc", async () => {
     };
     const meta = [
       ['name', undefined, (x) => x.toUpperCase()],
+      ['unknown', undefined, () => 1],
       ['address', [
         ['city'], ['rest', 'street', x => x.split(',')[0]]
       ]],

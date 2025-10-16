@@ -104,3 +104,10 @@ prevent mutation fns array and allow to reuse composition
 
 ## [0.5.2] - 2025-08-21
 - fix debounce bug
+
+
+## [0.6] - 2025-10-16
+- add iterator module
+- add logger
+- coverage tests
+- types update
