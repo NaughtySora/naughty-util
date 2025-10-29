@@ -6,7 +6,7 @@ module.exports = {
   async: require('./lib/async.js'),
   buffer: require('./lib/buffer.js'),
   date: require('./lib/date.js'),
-  http: require('./lib/http.js'),
+  http: { ...require('./lib/http.js'), CODES: require('./lib/HTTP_CODES.js') },
   mixin: require('./lib/mixin.js'),
   number: require('./lib/number.js'),
   misc: require('./lib/misc.js'),

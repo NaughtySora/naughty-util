@@ -111,3 +111,8 @@ prevent mutation fns array and allow to reuse composition
 - add logger
 - coverage tests
 - types update
+
+## [0.6.1] - 2025-10-29
+
+- browser polyfill for http codes
+- object iterator functions

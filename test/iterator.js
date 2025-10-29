@@ -30,4 +30,54 @@ describe('iterator', () => {
       assert.deepEqual([...iterator.pick(seq, 'age')], [42, 420]);
     });
   });
+
+  describe("object", () => {
+    it("keys", () => {
+      const obj = {
+        name: 1,
+        key: '2',
+        fn() { },
+        async afn() { },
+        [Symbol("asd")]() { },
+        get a() {
+          return true;
+        },
+      };
+      const expected = ["name", "key", "fn", "afn", "a"];
+      const actual = [...iterator.object.keys(obj)];
+      assert.deepEqual(expected, actual);
+    });
+
+    it("values", () => {
+      const obj = {
+        name: 1,
+        key: '2',
+        fn() { },
+        async afn() { },
+        [Symbol("asd")]() { },
+        get a() {
+          return true;
+        },
+      };
+      const expected = [1, '2', obj.fn, obj.afn, true];
+      const actual = [...iterator.object.values(obj)];
+      assert.deepEqual(expected, actual);
+    });
+
+    it("entries", () => {
+      const obj = {
+        name: 1,
+        key: '2',
+        fn() { },
+        async afn() { },
+        [Symbol("asd")]() { },
+        get a() {
+          return true;
+        },
+      };
+      const expected = [["name", 1], ["key", '2'], ["fn", obj.fn], ["afn", obj.afn], ["a", true]];
+      const actual = [...iterator.object.entries(obj)];
+      assert.deepEqual(expected, actual);
+    });
+  });
 });
