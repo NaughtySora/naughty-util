@@ -116,3 +116,7 @@ prevent mutation fns array and allow to reuse composition
 
 - browser polyfill for http codes
 - object iterator functions
+
+## [0.6.2] - 2025-11-21
+
+- reflection types
