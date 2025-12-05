@@ -120,3 +120,8 @@ prevent mutation fns array and allow to reuse composition
 ## [0.6.2] - 2025-11-21
 
 - reflection types
+
+## [0.6.2] - 2025-12-05
+
+- changing logger error out channel to stderr instead of stdout
+- adding swap method to array, types, tests

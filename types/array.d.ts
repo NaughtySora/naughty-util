@@ -9,4 +9,5 @@ export interface UtilsArray {
   max<T extends any>(array: Array<T>, callback: Callback): number;
   min<T extends any>(array: Array<T>, callback: Callback): number;
   sum<T extends any>(array: Array<T>, callback: Callback): number;
+  swap<T extends any>(array: Array<T>, i: number, j: number): void;
 }
