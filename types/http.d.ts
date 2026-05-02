@@ -1,3 +1,9 @@
+interface DataURL {
+  payload(payload: string): string;
+  mime(url: string): string;
+  from(payload: string, mime: string): string;
+}
+
 export interface UtilsHTTP {
   parseHost(host: string): string;
   parseCookies(cookie: string): Record<string, string>;
@@ -132,4 +138,5 @@ export interface UtilsHTTP {
     notExtended: 510,
     networkAuthenticationRequired: 511
   };
+  dataUrl: DataURL;
 }

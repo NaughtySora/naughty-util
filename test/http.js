@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 const { describe, it } = require('node:test');
 const { http } = require('../main');
 
@@ -10,7 +10,7 @@ describe("http", () => {
     const expected = ['no-host-name-in-http-headers', 'domain.com', 'localhost', 'domain.com', 'localhost'];
     for (let i = 0; i < mock.length; i++) {
       const actual = http.parseHost(mock[i]);
-      assert.strictEqual(actual, expected[i])
+      assert.equal(actual, expected[i])
     }
   });
 
@@ -19,7 +19,7 @@ describe("http", () => {
     const expected = [{ a: '1', b: '2' }, { a: '1', b: '2' }, { a: '1', b: '2' }, { a: '1' }];
     for (let i = 0; i < mock.length; i++) {
       const actual = http.parseCookies(mock[i]);
-      assert.deepStrictEqual(actual, expected[i]);
+      assert.deepEqual(actual, expected[i]);
     }
   });
 
@@ -28,7 +28,7 @@ describe("http", () => {
     const expected = [{ a: '1', b: '2' }, { a: '1b=2' }, { a: '1' }, { a: '1' }, { a: '' }, { a: '' }];
     for (let i = 0; i < mock.length; i++) {
       const actual = http.parseParams(mock[i]);
-      assert.deepStrictEqual(actual, expected[i]);
+      assert.deepEqual(actual, expected[i]);
     }
   });
 
@@ -51,7 +51,7 @@ describe("http", () => {
     ];
     for (let i = 0; i < mock.length; i++) {
       const actual = http.createParams(mock[i]);
-      assert.strictEqual(actual, expected[i]);
+      assert.equal(actual, expected[i]);
     }
   });
 
@@ -60,13 +60,34 @@ describe("http", () => {
     const expected = [undefined, '/project', '/user', '/user/projects', '/', undefined, undefined, undefined];
     for (let i = 0; i < mock.length; i++) {
       const actual = http.parseURL(mock[i]);
-      assert.strictEqual(actual?.pathname, expected[i]);
+      assert.equal(actual?.pathname, expected[i]);
     }
   });
 
   it("CODES", () => {
     assert.ok(Object.isFrozen(http.CODES));
-    assert.strictEqual(http.CODES.continue, 100);
-    assert.strictEqual(http.CODES["100"], "Continue");
+    assert.equal(http.CODES.continue, 100);
+    assert.equal(http.CODES["100"], "Continue");
+  });
+
+  describe('dataUrl', () => {
+    const PAYLOAD = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
+    const MIME = "image/png";
+    const URL = `data:${MIME};base64,${PAYLOAD}`;
+
+    it('payload', () => {
+      const result = http.dataUrl.payload(URL);
+      assert.equal(result, PAYLOAD);
+    });
+
+    it('from', () => {
+      const result = http.dataUrl.from(PAYLOAD, MIME);
+      assert.equal(result, URL);
+    });
+
+    it('ext', () => {
+      const result = http.dataUrl.mime(URL);
+      assert.equal(result, MIME);
+    });
   });
 });
