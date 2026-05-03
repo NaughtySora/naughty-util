@@ -3,7 +3,7 @@
 const { error } = require('../main');
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
-const { DomainError, DescriptiveError, toJSON } = require('../lib/error');
+const { error: { DomainError, DescriptiveError, toJSON } } = require('../main');
 
 describe('error', () => {
   it('DomainError', () => {

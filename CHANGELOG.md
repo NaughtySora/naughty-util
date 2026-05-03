@@ -125,3 +125,17 @@ prevent mutation fns array and allow to reuse composition
 
 - changing logger error out channel to stderr instead of stdout
 - adding swap method to array, types, tests
+
+## [0.7.0] - 2026-05-03
+
+- async: resolve, reject
+- date: valid
+- error:  toJSON, DescriptiveError, update DomainError interface
+- http: query, dataUrl
+- misc: curry, key
+- reflection: ctor, inspect
+- stream: update read
+- string: valid, update slug
+- test refactor
+- deps update
+
