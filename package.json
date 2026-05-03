@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NaughtySora/naughty-util"
+    "url": "git+https://github.com/NaughtySora/naughty-util.git"
   },
   "bugs": {
     "url": "https://github.com/NaughtySora/naughty-util/issues",
