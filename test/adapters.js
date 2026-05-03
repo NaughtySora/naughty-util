@@ -2,20 +2,20 @@
 
 const { adapters, misc, async } = require('../main');
 const { describe, it } = require('node:test');
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 
 describe("adapters", async () => {
   it("once", () => {
     const fn = () => 42;
     const wrapper = adapters.once(fn);
-    assert.strictEqual(wrapper(), fn());
-    assert.strictEqual(wrapper(), undefined);
-    assert.strictEqual(wrapper(), undefined);
+    assert.equal(wrapper(), fn());
+    assert.equal(wrapper(), undefined);
+    assert.equal(wrapper(), undefined);
     const message = "Error: once";
     const errWrapper = adapters.once(() => { throw new Error(message); });
     assert.throws(() => errWrapper(), { message });
-    assert.strictEqual(errWrapper(), undefined);
-    assert.strictEqual(errWrapper(), undefined);
+    assert.equal(errWrapper(), undefined);
+    assert.equal(errWrapper(), undefined);
   });
 
   it("limit", () => {
@@ -23,32 +23,32 @@ describe("adapters", async () => {
     const LIMIT = 5;
     const wrapper = adapters.limit(fn, LIMIT);
     for (const _ of misc.range(LIMIT, 1)) {
-      assert.strictEqual(wrapper(), fn());
+      assert.equal(wrapper(), fn());
     }
-    assert.strictEqual(wrapper(), undefined);
+    assert.equal(wrapper(), undefined);
     const message = "Error: limit";
     const err = () => { throw new Error(message); }
     const errWrapper = adapters.limit(err, LIMIT);
     for (const _ of misc.range(LIMIT, 1)) {
       assert.throws(() => errWrapper(), { message });
     }
-    assert.strictEqual(errWrapper(), undefined);
+    assert.equal(errWrapper(), undefined);
   });
 
   await it("timeout", async () => {
     const fn = () => 42;
     const WAIT = 500;
     const wrapper = adapters.timeout(fn, WAIT);
-    assert.strictEqual(wrapper(), fn());
+    assert.equal(wrapper(), fn());
     await async.pause(WAIT);
-    assert.strictEqual(wrapper(), undefined);
+    assert.equal(wrapper(), undefined);
 
     const message = "Error: timeout";
     const err = () => { throw new Error(message); };
     const errWrapper = adapters.timeout(err, WAIT);
     assert.throws(() => errWrapper(), { message });
     await async.pause(WAIT);
-    assert.strictEqual(errWrapper(), undefined);
+    assert.equal(errWrapper(), undefined);
   });
 
   await it("debounce", async () => {
@@ -58,7 +58,7 @@ describe("adapters", async () => {
       const wrapper = adapters.debounce((i) => void (result = i), THRESHOLD);
       wrapper(1);
       await async.pause(1000);
-      assert.strictEqual(result, 1);
+      assert.equal(result, 1);
       wrapper[Symbol.dispose]();
       assert.throws(() => {
         wrapper();
@@ -75,7 +75,7 @@ describe("adapters", async () => {
       await async.pause(1200);
       wrapper(1200);
       await async.pause(125);
-      assert.strictEqual(result, 999);
+      assert.equal(result, 999);
       wrapper[Symbol.dispose]();
     }
   });
@@ -91,14 +91,14 @@ describe("adapters", async () => {
     const LIMIT = 10;
     const wrapper = adapters.throttle(test.method1.bind(test), WAIT, LIMIT);
     for (const _ of misc.range(LIMIT, 1)) {
-      assert.strictEqual(wrapper(), test.method1());
+      assert.equal(wrapper(), test.method1());
     }
-    assert.strictEqual(wrapper(), undefined);
+    assert.equal(wrapper(), undefined);
     await async.pause(WAIT);
     for (const _ of misc.range(LIMIT, 1)) {
-      assert.strictEqual(wrapper(), test.method1());
+      assert.equal(wrapper(), test.method1());
     }
-    assert.strictEqual(wrapper(), undefined);
+    assert.equal(wrapper(), undefined);
 
     wrapper[Symbol.dispose]();
     assert.throws(() => {
@@ -121,9 +121,9 @@ describe("adapters", async () => {
   it("scoped", () => {
     const fn = () => null;
     const scoped = adapters.scoped(fn, (fn) => fn.scoped = true);
-    assert.strictEqual(scoped.scoped, undefined);
+    assert.equal(scoped.scoped, undefined);
     { using s = scoped; }
-    assert.strictEqual(scoped.scoped, true);
+    assert.equal(scoped.scoped, true);
 
     const test = {
       value: 42,
@@ -132,16 +132,16 @@ describe("adapters", async () => {
       },
     };
     const scoped2 = adapters.scoped(test, (obj) => obj.value = 0);
-    assert.strictEqual(scoped2.value, test.value);
+    assert.equal(scoped2.value, test.value);
     { using s = scoped2; }
-    assert.strictEqual(scoped2.value, 0);
+    assert.equal(scoped2.value, 0);
 
     const fn2 = () => null;
     {
       const scoped = adapters.scoped(fn2, (fn2) => fn2.test = 42);
-      assert.strictEqual(scoped.test, undefined);
+      assert.equal(scoped.test, undefined);
       scoped[Symbol.dispose]();
-      assert.strictEqual(scoped.test, 42);
+      assert.equal(scoped.test, 42);
     }
 
     const test2 = {
@@ -152,9 +152,9 @@ describe("adapters", async () => {
     };
     {
       const scoped2 = adapters.scoped(test2, (obj) => obj.value2 = obj.value);
-      assert.strictEqual(scoped2.value2, undefined);
+      assert.equal(scoped2.value2, undefined);
       scoped2[Symbol.dispose]();
-      assert.strictEqual(scoped2.value2, scoped2.value);
+      assert.equal(scoped2.value2, scoped2.value);
     }
 
     assert.throws(() => {
@@ -169,13 +169,13 @@ describe("adapters", async () => {
   it("count", () => {
     const fn = () => 42;
     const wrapper = adapters.count(fn);
-    assert.strictEqual(wrapper.counter, 0);
+    assert.equal(wrapper.counter, 0);
     wrapper();
     wrapper();
-    assert.strictEqual(wrapper.counter, 2);
+    assert.equal(wrapper.counter, 2);
     wrapper();
     wrapper();
-    assert.strictEqual(wrapper.counter, 4);
+    assert.equal(wrapper.counter, 4);
   });
 
   await it("callbackify", async () => {
@@ -185,8 +185,8 @@ describe("adapters", async () => {
     };
     const wrapper = adapters.callbackify(fn);
     wrapper(8, (err, data) => {
-      assert.deepStrictEqual(err, null);
-      assert.strictEqual(data, 50);
+      assert.deepEqual(err, null);
+      assert.equal(data, 50);
     });
     const error = new Error("Error");
     const fn2 = async () => {
@@ -194,8 +194,8 @@ describe("adapters", async () => {
     };
     const wrapper2 = adapters.callbackify(fn2);
     wrapper2((err, data) => {
-      assert.deepStrictEqual(err, error);
-      assert.strictEqual(data, null);
+      assert.deepEqual(err, error);
+      assert.equal(data, null);
     });
   });
 
@@ -203,7 +203,7 @@ describe("adapters", async () => {
     const fn = (x) => 42 + x;
     const wrapper = adapters.asyncify(fn);
     const result = await wrapper(8);
-    assert.strictEqual(result, 50);
+    assert.equal(result, 50);
   });
 
   await describe("logify", async () => {
@@ -212,12 +212,12 @@ describe("adapters", async () => {
       const wrapper = adapters.logify.sync(fn, {
         logger: {
           info(log, data) {
-            assert.strictEqual(log, "logable/before ");
-            assert.deepStrictEqual(data, { args: [8], suppress: true, fn });
+            assert.equal(log, "logable/before ");
+            assert.deepEqual(data, { args: [8], suppress: true, fn });
           },
           log(log, data) {
-            assert.strictEqual(log, "logable/after::success ");
-            assert.deepStrictEqual(data, { result: 50 });
+            assert.equal(log, "logable/after::success ");
+            assert.deepEqual(data, { result: 50 });
           }
         }
       });
@@ -229,12 +229,12 @@ describe("adapters", async () => {
       const errWrapper = adapters.logify.sync(err, {
         logger: {
           info(log, data) {
-            assert.strictEqual(log, "logable/before ");
-            assert.deepStrictEqual(data, { args: [], suppress: true, fn: err });
+            assert.equal(log, "logable/before ");
+            assert.deepEqual(data, { args: [], suppress: true, fn: err });
           },
           error(log, data) {
-            assert.strictEqual(log, "logable/after::error ");
-            assert.deepStrictEqual(data, { error });
+            assert.equal(log, "logable/after::error ");
+            assert.deepEqual(data, { error });
           },
         }
       });
@@ -255,12 +255,12 @@ describe("adapters", async () => {
       const wrapper = adapters.logify.async(fn, {
         logger: {
           info(log, data) {
-            assert.strictEqual(log, "logable/before ");
-            assert.deepStrictEqual(data, { args: [8], suppress: true, fn });
+            assert.equal(log, "logable/before ");
+            assert.deepEqual(data, { args: [8], suppress: true, fn });
           },
           log(log, data) {
-            assert.strictEqual(log, "logable/after::success ");
-            assert.deepStrictEqual(data, { result: 50 });
+            assert.equal(log, "logable/after::success ");
+            assert.deepEqual(data, { result: 50 });
           }
         }
       });
@@ -270,12 +270,12 @@ describe("adapters", async () => {
       const errWrapper = adapters.logify.async(err, {
         logger: {
           info(log, data) {
-            assert.strictEqual(log, "logable/before ");
-            assert.deepStrictEqual(data, { args: [], suppress: true, fn: err });
+            assert.equal(log, "logable/before ");
+            assert.deepEqual(data, { args: [], suppress: true, fn: err });
           },
           error(log, data) {
-            assert.strictEqual(log, "logable/after::error ");
-            assert.deepStrictEqual(data, { error });
+            assert.equal(log, "logable/after::error ");
+            assert.deepEqual(data, { error });
           },
         }
       });
@@ -344,10 +344,10 @@ describe("adapters", async () => {
     it("sync", () => {
       const fn = () => 42;
       const wrapper = adapters.cancellable.sync(fn);
-      assert.strictEqual(wrapper(), fn());
-      assert.strictEqual(wrapper(), fn());
+      assert.equal(wrapper(), fn());
+      assert.equal(wrapper(), fn());
       wrapper.cancel();
-      assert.strictEqual(wrapper(), undefined);
+      assert.equal(wrapper(), undefined);
     });
   });
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 const { describe, it } = require('node:test');
 const { number } = require('../main');
 
@@ -14,9 +14,9 @@ describe("number", () => {
     const actualNegative = number.average(negative);
     const expected = 135.6;
     const negativeExpected = -1;
-    assert.strictEqual(actual, expected);
-    assert.strictEqual(actualZero, 0);
-    assert.strictEqual(actualNegative, negativeExpected);
+    assert.equal(actual, expected);
+    assert.equal(actualZero, 0);
+    assert.equal(actualNegative, negativeExpected);
   });
 
   it("total", () => {
@@ -28,9 +28,9 @@ describe("number", () => {
     const actualNegative = number.total(negative);
     const expected = 331.25;
     const negativeExpected = -3;
-    assert.strictEqual(actual, expected);
-    assert.strictEqual(actualZero, 0);
-    assert.strictEqual(actualNegative, negativeExpected);
+    assert.equal(actual, expected);
+    assert.equal(actualZero, 0);
+    assert.equal(actualNegative, negativeExpected);
   });
 });
 
@@ -39,7 +39,7 @@ it('cutFraction', () => {
   const expected = [123.12, 101.15, -25.56, 0.33, 9.09, 3.14, 2.71];
   for (let i = 0; i < mock.length; i++) {
     const actual = number.cutFraction(mock[i]);
-    assert.strictEqual(actual, expected[i]);
+    assert.equal(actual, expected[i]);
   }
 });
 
@@ -48,7 +48,7 @@ it('positiveInt', () => {
   const expected = [true, true, false, true, true, false, false, false, false, false, false, false, false];
   for (let i = 0; i < mock.length; i++) {
     const actual = number.positiveInt(mock[i]);
-    assert.strictEqual(actual, expected[i]);
+    assert.equal(actual, expected[i]);
   }
 });
 
@@ -57,7 +57,7 @@ it("safe", () => {
   const expected = [0, 0, -10, 10, 245, 22.22, 33.45, -26.99, 0, 0, 0, 0, 0];
   for (let i = 0; i < mock.length; i++) {
     const actual = number.safe(mock[i]);
-    assert.strictEqual(actual, expected[i]);
+    assert.equal(actual, expected[i]);
   }
 });
 
@@ -66,7 +66,7 @@ it("isSafe", () => {
   const expected = [true, true, true, true, true, true, true, true, false, false, false, false, false];
   for (let i = 0; i < mock.length; i++) {
     const actual = number.isSafe(mock[i]);
-    assert.strictEqual(actual, expected[i]);
+    assert.equal(actual, expected[i]);
   }
 });
 
@@ -90,7 +90,7 @@ it("percentRatio", () => {
     const index = mocks.indexOf(mock);
     const [amount, part] = mock;
     const percentOfTotal = number.percentRatio(amount, part);
-    assert.strictEqual(percentOfTotal, expected[index]);
+    assert.equal(percentOfTotal, expected[index]);
   }
 });
 
@@ -114,7 +114,7 @@ it("percentOf", () => {
     const index = mocks.indexOf(mock);
     const [total, part] = mock;
     const percentOfTotal = number.percentOf(total, part);
-    assert.strictEqual(percentOfTotal, expected[index]);
+    assert.equal(percentOfTotal, expected[index]);
   }
 });
 

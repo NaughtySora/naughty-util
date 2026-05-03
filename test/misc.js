@@ -1,12 +1,12 @@
 'use strict';
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 const { describe, it } = require('node:test');
 const { misc, async } = require('../main');
 
 describe("misc", async () => {
   it("id", () => {
     const v = 42;
-    assert.strictEqual(misc.id(v), v);
+    assert.equal(misc.id(v), v);
   });
 
   it("inRange", () => {
@@ -14,7 +14,7 @@ describe("misc", async () => {
     const expected = [true, false, true, true, false];
     for (let i = 0; i < mock.length; i++) {
       const actual = misc.inRange(...mock[i]);
-      assert.deepStrictEqual(actual, expected[i]);
+      assert.deepEqual(actual, expected[i]);
     }
   });
 
@@ -29,16 +29,16 @@ describe("misc", async () => {
     for (let i = 0; i < mock.length; i++) {
       const fn = misc.compose(...mock[i]);
       const actual = fn(...params[i]);
-      assert.deepStrictEqual(actual, expected[i]);
+      assert.deepEqual(actual, expected[i]);
     }
     const fn = misc.compose();
-    assert.deepStrictEqual(fn(), []);
+    assert.deepEqual(fn(), []);
   });
 
   it("range", () => {
-    assert.deepStrictEqual([...misc.range(10)], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    assert.deepStrictEqual([...misc.range(10, -6, 2)], [-6, -4, -2, 0, 2, 4, 6, 8, 10]);
-    assert.deepStrictEqual([...misc.range(10, 6, 2)], [6, 8, 10]);
+    assert.deepEqual([...misc.range(10)], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    assert.deepEqual([...misc.range(10, -6, 2)], [-6, -4, -2, 0, 2, 4, 6, 8, 10]);
+    assert.deepEqual([...misc.range(10, 6, 2)], [6, 8, 10]);
   });
 
   it("partial", () => {
@@ -48,10 +48,10 @@ describe("misc", async () => {
     const carried2 = misc.partial(fn, 'h', 'e', 'llo');
     const carried3 = misc.partial(fn2, 1, 2);
     const carried4 = misc.partial(fn2, 'h', 'e', 'llo');
-    assert.deepStrictEqual(carried(3), [1, 2, 3]);
-    assert.deepStrictEqual(carried2(), ['h', 'e', 'llo']);
-    assert.deepStrictEqual(carried3(3), [1, 2, 3]);
-    assert.deepStrictEqual(carried4(), ['h', 'e', 'llo']);
+    assert.deepEqual(carried(3), [1, 2, 3]);
+    assert.deepEqual(carried2(), ['h', 'e', 'llo']);
+    assert.deepEqual(carried3(3), [1, 2, 3]);
+    assert.deepEqual(carried4(), ['h', 'e', 'llo']);
   });
 
   it("projection", () => {
@@ -93,7 +93,7 @@ describe("misc", async () => {
     ];
 
     const result = misc.projection(meta, data);
-    assert.deepStrictEqual(result, {
+    assert.deepEqual(result, {
       name: 'JOHN DOE',
       city: 'Washington',
       street: 'Street',
@@ -139,11 +139,11 @@ describe("misc", async () => {
   it("enumerate", () => {
     const arr = [{ a: 1 }, { b: 2 }, { c: 42 }];
     for (const { 0: item, 1: i } of misc.enumerate(arr)) {
-      assert.deepStrictEqual(item, arr[i]);
+      assert.deepEqual(item, arr[i]);
     }
     const STEP = 10;
     for (const { 0: item, 1: i } of misc.enumerate(misc.range(100, 0, STEP))) {
-      assert.strictEqual(i, item / STEP);
+      assert.equal(i, item / STEP);
     }
   });
 

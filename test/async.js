@@ -1,5 +1,5 @@
 'use strict';
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 const { describe, it } = require('node:test');
 const { async } = require('../main');
 const fs = require('node:fs');
@@ -25,7 +25,7 @@ describe("async", async () => {
       first30(__filename),
     ]);
     if (typeof text !== 'string' || text.length === 0) assert.fail('No content');
-    assert.strictEqual(cut.length, LIMIT);
+    assert.equal(cut.length, LIMIT);
   });
 
   await it("thenable", async () => {
@@ -39,24 +39,24 @@ describe("async", async () => {
     const composition = async.parallel(x, x2);
     {
       const [xResult, x2Result] = await composition();
-      assert.strictEqual(xResult, 0);
-      assert.strictEqual(x2Result, 1);
+      assert.equal(xResult, 0);
+      assert.equal(x2Result, 1);
     }
     {
       const arr = [1, 2, 3];
       const [xResult, x2Result] = await composition(arr, 5);
-      assert.deepStrictEqual(xResult, arr);
-      assert.strictEqual(x2Result, 25);
+      assert.deepEqual(xResult, arr);
+      assert.equal(x2Result, 25);
     }
     {
       const [xResult, x2Result] = await composition(undefined, 3);
-      assert.strictEqual(xResult, 0);
-      assert.strictEqual(x2Result, 9);
+      assert.equal(xResult, 0);
+      assert.equal(x2Result, 9);
     }
     {
       const [xResult, x2Result] = await composition('test');
-      assert.strictEqual(xResult, 'test');
-      assert.strictEqual(x2Result, 1);
+      assert.equal(xResult, 'test');
+      assert.equal(x2Result, 1);
     }
   });
 });

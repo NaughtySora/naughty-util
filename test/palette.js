@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 const { describe, it } = require('node:test');
 const { palette } = require('../main');
 
@@ -8,7 +8,7 @@ describe("palette", () => {
   it("dye", () => {
     const TEXT = "test";
     const text = palette.dye(palette.COLORS.blue, TEXT);
-    assert.strictEqual(text, `${palette.COLORS.blue}${TEXT}${palette.CLEAN}`);
+    assert.equal(text, `${palette.COLORS.blue}${TEXT}${palette.CLEAN}`);
   });
 
   it("CLEAN", () => {
