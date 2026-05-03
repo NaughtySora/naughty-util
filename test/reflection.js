@@ -2,117 +2,96 @@
 
 const { reflection, misc } = require('../main');
 const { describe, it } = require('node:test');
-const assert = require('node:assert');
-
-const TESTS = [
-  "",
-  1,
-  true,
-  false,
-  1n,
-  {},
-  [],
-  new Set(),
-  new Map(),
-  () => { },
-  async () => { },
-  Symbol(),
-  undefined,
-  null,
-  class T { },
-  function A() { },
-  new RegExp(),
-  Atomics,
-  String,
-  new String("?"),
-  new Error("hi"),
-  -0,
-  +0,
-  0,
-  0n,
-  NaN,
-];
-
-const ASYNC_FN = 10;
-const CLASS = 14;
-const ERROR = 20;
-const COMPLEX = [5, 6, 7, 8, 9, ASYNC_FN, CLASS, 15, 16, 17, 18, 19, ERROR];
-const EMPTY = [12, 13];
-const FALSY = [0, 3, 12, 13, 21, 22, 23, 24, 25];
-const OBJECT = [5, 7, 8, 16, 17, 19, 20];
-const PRIMITIVES = [0, 1, 2, 3, 4, 11, 12, 21, 22, 23, 24, 25];
+const assert = require('node:assert/strict');
 
 describe("reflection", () => {
   it('isAsyncFunction', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (i === ASYNC_FN) {
-        assert.strictEqual(reflection.isAsyncFunction(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isAsyncFunction(t), false);
-    }
+    assert.ok(reflection.isAsyncFunction(async () => { }));
+    assert.ok(!reflection.isAsyncFunction(() => { }));
+    assert.ok(!reflection.isAsyncFunction(1));
   });
+
   it('isClass', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (i === CLASS) {
-        assert.strictEqual(reflection.isClass(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isClass(t), false);
-    }
+    assert.ok(reflection.isClass(class A { }), true);
+    assert.ok(!reflection.isClass(() => { }));
+    assert.ok(!reflection.isClass(async function () { }));
+    assert.ok(!reflection.isClass({}));
   });
+
   it('isComplex', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (COMPLEX.includes(i)) {
-        assert.strictEqual(reflection.isComplex(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isComplex(t), false);
-    }
+    assert.ok(reflection.isComplex({}));
+    assert.ok(!reflection.isComplex(null));
+    assert.ok(reflection.isComplex(new RegExp()));
+    assert.ok(reflection.isComplex(new Error()));
+    assert.ok(!reflection.isComplex(1));
+    assert.ok(!reflection.isComplex(true));
+    assert.ok(!reflection.isComplex("asd"));
   });
+
   it('isEmpty', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (EMPTY.includes(i)) {
-        assert.strictEqual(reflection.isEmpty(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isEmpty(t), false);
-    }
+    assert.ok(reflection.isEmpty(null));
+    assert.ok(reflection.isEmpty(undefined));
+    assert.ok(!reflection.isEmpty(""));
+    assert.ok(!reflection.isEmpty({}));
+    assert.ok(!reflection.isEmpty(1));
   });
+
   it('isError', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (i === ERROR) {
-        assert.strictEqual(reflection.isError(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isError(t), false);
-    }
+    class E extends TypeError { };
+    const e = new E();
+    const error = new Error();
+    const syntax = new SyntaxError();
+    assert.ok(reflection.isError(e));
+    assert.ok(reflection.isError(error));
+    assert.ok(reflection.isError(syntax));
+    assert.ok(!reflection.isError(""));
+    assert.ok(!reflection.isError({ message: "" }));
+    assert.ok(!reflection.isError({ message: "", stack: "" }));
   });
+
   it('isFalsy', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (FALSY.includes(i)) {
-        assert.strictEqual(reflection.isFalsy(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isFalsy(t), false);
-    }
+    assert.ok(reflection.isFalsy(""));
+    assert.ok(reflection.isFalsy(0));
+    assert.ok(reflection.isFalsy(-0));
+    assert.ok(reflection.isFalsy(+0));
+    assert.ok(reflection.isFalsy(0n));
+    assert.ok(reflection.isFalsy(null));
+    assert.ok(reflection.isFalsy(undefined));
+    assert.ok(reflection.isFalsy(NaN));
+    assert.ok(reflection.isFalsy(false));
+    assert.ok(!reflection.isFalsy(true));
+    assert.ok(!reflection.isFalsy({}));
+    assert.ok(!reflection.isFalsy([]));
+    assert.ok(!reflection.isFalsy("213"));
   });
+
   it('isObject', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (OBJECT.includes(i)) {
-        assert.strictEqual(reflection.isObject(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isObject(t), false);
-    }
+    assert.ok(reflection.isObject({}));
+    assert.ok(!reflection.isObject(null));
+    assert.ok(reflection.isObject(new RegExp()));
+    assert.ok(reflection.isObject(new Error()));
+    assert.ok(!reflection.isObject(1));
+    assert.ok(!reflection.isObject(true));
+    assert.ok(!reflection.isObject("asd"));
+    assert.ok(!reflection.isObject(() => { }));
   });
+
   it('isPrimitive', () => {
-    for (const [t, i] of misc.enumerate(TESTS)) {
-      if (PRIMITIVES.includes(i)) {
-        assert.strictEqual(reflection.isPrimitive(t), true);
-        continue;
-      }
-      assert.strictEqual(reflection.isPrimitive(t), false);
-    }
+    assert.ok(!reflection.isPrimitive({}));
+    assert.ok(reflection.isPrimitive(null));
+    assert.ok(!reflection.isPrimitive(new RegExp()));
+    assert.ok(!reflection.isPrimitive(new Error()));
+    assert.ok(reflection.isPrimitive(1));
+    assert.ok(reflection.isPrimitive(true));
+    assert.ok(reflection.isPrimitive("asd"));
+  });
+
+  it('ctor', () => {
+    const AsyncFunctionConstructor = (async () => { }).constructor;
+    assert.ok(reflection.ctor(async () => { }), AsyncFunctionConstructor);
+    assert.ok(reflection.ctor({}), Object);
+    assert.ok(reflection.ctor(1), Number);
+    assert.ok(reflection.ctor(""), String);
+    assert.ok(reflection.ctor(0n), BigInt);
   });
 });

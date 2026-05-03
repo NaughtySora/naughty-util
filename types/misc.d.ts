@@ -1,5 +1,12 @@
 import { Callback } from "./shared";
 
+type Key = <K extends string[]>(...keys: K) => K extends [] ? string : Key;
+
+type Curry = <
+  F extends (...args: any[]) => any,
+  A extends Partial<Parameters<F>>>(fn: F) => (...args: A) =>
+    A extends [] ? ReturnType<F> : Curry;
+
 export interface UtilsMisc {
   id<T>(entity: T): T;
   inRange<T extends string | number>(value: T, min: T, max: T): boolean;
@@ -11,4 +18,6 @@ export interface UtilsMisc {
   random(max: number, min?: number): number;
   timestamp(): () => { nanoseconds: number, seconds: number };
   unique(): string;
+  key: Key;
+  curry: Curry;
 }

@@ -1,9 +1,12 @@
 'use strict';
 
-const paths = ['abstract', 'adapters', 'array',
-  'async', 'buffer', 'cache', 'date', 'error',
-  'http', 'misc', 'mixin', 'number', 'palette',
-  'reflection', 'stream', 'string', 'iterator'];
+const { readdirSync, lstatSync } = require('node:fs');
+const { resolve } = require('node:path');
 
-for (const path of paths) require(`./${path}.js`);
+const paths = readdirSync(__dirname);
 
+for (const path of paths) {
+  const pathname = resolve(__dirname, path);
+  if (lstatSync(pathname).isDirectory()) continue;
+  require(pathname);
+}

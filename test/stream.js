@@ -1,5 +1,5 @@
 'use strict';
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 const { describe, it } = require('node:test');
 const { stream } = require('../main');
 const { Readable } = require('node:stream');
@@ -16,7 +16,7 @@ describe('stream', async () => {
     const content = await stream.read(readable);
     const text = content.toString();
     assert.ok(Buffer.isBuffer(content));
-    assert.strictEqual(text, 'Hello World!');
+    assert.equal(text, 'Hello World!');
 
     const file = fs.createReadStream(__filename);
     const content2 = await stream.read(file);
@@ -32,6 +32,6 @@ describe('stream', async () => {
     readable.push('!');
     readable.push(null);
     const utf8 = await stream.utf8(readable);
-    assert.strictEqual(utf8, 'Hello World!');
+    assert.equal(utf8, 'Hello World!');
   });
 });

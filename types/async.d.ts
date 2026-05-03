@@ -10,4 +10,6 @@ export interface UtilsAsync {
   thenable<F extends Callback>(fn: F, ...params: Parameters<F>): Thenable<any>;
   pause(ms: number): Promise<void>;
   parallel<F extends CallbackAsync>(...fns: F[]): (...params: Parameters<F>) => Promise<any>;
+  reject(ms: number, error?: any): void;
+  resolve<V extends any>(ms: number, value: V): V;
 }

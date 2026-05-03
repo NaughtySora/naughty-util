@@ -24,8 +24,15 @@ declare class DomainError<M extends string = "", C = 400, D = null> extends Erro
   code: C;
   message: M;
   toError(): InstanceType<typeof Error>;
+  adopt<F extends Function>(...entities: F[]): this;
+}
+
+declare class DescriptiveError extends Error {
+  constructor(...args: ConstructorParameters<typeof Error>);
 }
 
 export interface UtilsError {
   DomainError: typeof DomainError;
+  DescriptiveError: typeof DescriptiveError;
+  toJSON<E extends Error>(error: E): any;
 }

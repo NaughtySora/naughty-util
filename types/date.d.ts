@@ -6,6 +6,7 @@ export interface UtilsDate {
   midnight(input: ConstructorParameters<DateConstructor>[0]): number;
   difference(base: ConstructorParameters<DateConstructor>[0], target: ConstructorParameters<DateConstructor>[0]): number;
   reached(base: ConstructorParameters<DateConstructor>[0], target: ConstructorParameters<DateConstructor>[0]): boolean;
+  valid(date: string | Date): date is string | Date;
   DAY: number;
   HOUR: number;
   MINUTE: number;

@@ -1,5 +1,5 @@
 'use strict';
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 const { buffer } = require('../main');
 const { describe, it } = require('node:test');
 

@@ -2,7 +2,7 @@
 
 const { abstract } = require('../main');
 const { describe, it } = require('node:test');
-const assert = require('node:assert');
+const assert = require('node:assert/strict');
 
 describe('abstract', () => {
   it('factorify', () => {
@@ -21,15 +21,15 @@ describe('abstract', () => {
     const actualPow = pow(2, 3);
     const actualTest = test(2, 3);
 
-    assert.strictEqual(sum, dataset.sum);
-    assert.strictEqual(multi, dataset.multi);
-    assert.strictEqual(pow, dataset.pow);
-    assert.strictEqual(test, dataset.pow);
+    assert.equal(sum, dataset.sum);
+    assert.equal(multi, dataset.multi);
+    assert.equal(pow, dataset.pow);
+    assert.equal(test, dataset.pow);
 
-    assert.strictEqual(actualSum, 3);
-    assert.strictEqual(actualMulti, 2);
-    assert.strictEqual(actualPow, 8);
-    assert.strictEqual(actualTest, 8);
+    assert.equal(actualSum, 3);
+    assert.equal(actualMulti, 2);
+    assert.equal(actualPow, 8);
+    assert.equal(actualTest, 8);
   });
 
   it('factory', () => {
@@ -45,12 +45,12 @@ describe('abstract', () => {
     const pool = abstract.factory(Pool, [DATA]);
     const poolImpl = pool();
 
-    assert.strictEqual(date().toString(), new Date(DATES[0]).toString());
-    assert.deepStrictEqual(array().fill(1), [1, 1, 1]);
-    assert.strictEqual(array().length, ARRAY_LENGTH);
-    assert.deepStrictEqual(poolImpl.get(), DATA);
-    assert.strictEqual(poolImpl.get(), undefined);
-    assert.deepStrictEqual(pool().get(), DATA);
+    assert.equal(date().toString(), new Date(DATES[0]).toString());
+    assert.deepEqual(array().fill(1), [1, 1, 1]);
+    assert.equal(array().length, ARRAY_LENGTH);
+    assert.deepEqual(poolImpl.get(), DATA);
+    assert.equal(poolImpl.get(), undefined);
+    assert.deepEqual(pool().get(), DATA);
     assert.throws(() => {
       const pool = abstract.factory(Pool, null);
       pool();
@@ -60,12 +60,12 @@ describe('abstract', () => {
   it('Options', () => {
     const str = "test";
     const some = new abstract.Option(str);
-    assert.strictEqual(some.unwrap(), str);
-    assert.strictEqual(some.valueOf(), "Some");
+    assert.equal(some.unwrap(), str);
+    assert.equal(some.valueOf(), "Some");
 
     const none = new abstract.Option();
-    assert.strictEqual(none.unwrap(), undefined);
-    assert.strictEqual(none.valueOf(), "None");
+    assert.equal(none.unwrap(), undefined);
+    assert.equal(none.valueOf(), "None");
 
     const error = new Error("err");
     const value = [1, 2, 3];
@@ -73,29 +73,29 @@ describe('abstract', () => {
     const some3 = abstract.Option.from(error);
     const none2 = abstract.Option.from();
 
-    assert.deepStrictEqual(some2.unwrap(), value);
-    assert.deepStrictEqual(some3.unwrap(), error);
-    assert.strictEqual(none2.unwrap(), undefined);
+    assert.deepEqual(some2.unwrap(), value);
+    assert.deepEqual(some3.unwrap(), error);
+    assert.equal(none2.unwrap(), undefined);
 
-    assert.strictEqual(some2.valueOf(), "Some");
-    assert.strictEqual(some3.valueOf(), "Some");
-    assert.strictEqual(none2.valueOf(), "None");
+    assert.equal(some2.valueOf(), "Some");
+    assert.equal(some3.valueOf(), "Some");
+    assert.equal(none2.valueOf(), "None");
   });
 
   it('Result', () => {
     const str = "test";
     const result = new abstract.Result(str);
-    assert.strictEqual(result.unwrap(), str);
-    assert.strictEqual(result.valueOf(), "Ok");
+    assert.equal(result.unwrap(), str);
+    assert.equal(result.valueOf(), "Ok");
 
     const nothing = new abstract.Result();
-    assert.strictEqual(nothing.unwrap(), undefined);
-    assert.strictEqual(nothing.valueOf(), "Ok");
+    assert.equal(nothing.unwrap(), undefined);
+    assert.equal(nothing.valueOf(), "Ok");
 
     const error = new TypeError("a");
     const err = new abstract.Result(error);
-    assert.deepStrictEqual(err.unwrap(), error);
-    assert.strictEqual(err.valueOf(), "Err");
+    assert.deepEqual(err.unwrap(), error);
+    assert.equal(err.valueOf(), "Err");
 
     const error2 = new Error("err");
     const value = [1, 2, 3];
@@ -103,13 +103,13 @@ describe('abstract', () => {
     const empty = abstract.Result.from();
     const err2 = abstract.Result.from(error2);
 
-    assert.deepStrictEqual(res.unwrap(), value);
-    assert.strictEqual(empty.unwrap(), undefined);
-    assert.deepStrictEqual(err2.unwrap(), error2);
+    assert.deepEqual(res.unwrap(), value);
+    assert.equal(empty.unwrap(), undefined);
+    assert.deepEqual(err2.unwrap(), error2);
 
-    assert.strictEqual(res.valueOf(), "Ok");
-    assert.strictEqual(empty.valueOf(), "Ok");
-    assert.strictEqual(err2.valueOf(), "Err");
+    assert.equal(res.valueOf(), "Ok");
+    assert.equal(empty.valueOf(), "Ok");
+    assert.equal(err2.valueOf(), "Err");
   });
 
   it('match', () => {
@@ -119,13 +119,13 @@ describe('abstract', () => {
     const err = new abstract.Result(error);
 
     abstract.match(result, {
-      "Ok": (v) => assert.strictEqual(v, str),
+      "Ok": (v) => assert.equal(v, str),
       "Err": () => { throw new Error("Should never reach") },
     });
 
     abstract.match(err, {
       "Ok": () => { throw new Error("Should never reach") },
-      "Err": (e) => assert.deepStrictEqual(e, error),
+      "Err": (e) => assert.deepEqual(e, error),
     });
 
     const custom = {
@@ -149,17 +149,17 @@ describe('abstract', () => {
     };
 
     abstract.match(custom, {
-      "test": (v) => assert.strictEqual(v, custom.value),
+      "test": (v) => assert.equal(v, custom.value),
       _: () => { throw new Error("Should never reach") },
     });
 
     abstract.match(custom, {
-      _: (v) => assert.strictEqual(v, custom.value),
+      _: (v) => assert.equal(v, custom.value),
     });
 
     abstract.match(custom2, {
       "test": () => { throw new Error("Should never reach") },
-      _: (v) => assert.strictEqual(v, custom.value),
+      _: (v) => assert.equal(v, custom.value),
     });
 
     const data = {};
@@ -170,23 +170,23 @@ describe('abstract', () => {
     const none2 = new abstract.Option(null);
 
     abstract.match(some, {
-      "Some": (v) => assert.deepStrictEqual(v, data),
+      "Some": (v) => assert.deepEqual(v, data),
       "None": () => { throw new Error("Should never reach") },
     });
 
     abstract.match(some2, {
-      "Some": (v) => assert.deepStrictEqual(v, error2),
+      "Some": (v) => assert.deepEqual(v, error2),
       "None": () => { throw new Error("Should never reach") },
     });
 
     abstract.match(none, {
       "Some": () => { throw new Error("Should never reach") },
-      "None": (v) => assert.strictEqual(v, undefined),
+      "None": (v) => assert.equal(v, undefined),
     });
 
     abstract.match(none2, {
       "Some": () => { throw new Error("Should never reach") },
-      "None": (v) => assert.strictEqual(v, undefined),
+      "None": (v) => assert.equal(v, undefined),
     });
 
     assert.throws(() => {
