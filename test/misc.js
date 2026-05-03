@@ -146,4 +146,20 @@ describe("misc", async () => {
       assert.strictEqual(i, item / STEP);
     }
   });
+
+  it('key', () => {
+    const key = misc.key('abc');
+    assert.equal(key(), 'abc');
+    assert.equal(key('123')(), 'abc:123');
+    assert.equal(key('123')('+++')(), 'abc:123:+++');
+  });
+
+  it('curry', () => {
+    const test = (...args) => args.join(':');
+    const key = misc.curry(test);
+    assert.ok(typeof key('a') === "function");
+    assert.equal(key(), "");
+    assert.equal(key('a')(), 'a');
+    assert.ok(key('a')('b')(), 'a:b');
+  });
 });
