@@ -70,6 +70,18 @@ describe("http", () => {
     assert.equal(http.CODES["100"], "Continue");
   });
 
+  it('query', () => {
+    const path = 'abc/qwerty';
+    const params = { a: 1, "c c": true, d: ["a"], c: 'd' };
+    assert.equal(http.query(path, params), 'abc/qwerty?a=1&c+c=true&d=a&c=d');
+    assert.equal(http.query(path, null), path);
+    assert.equal(http.query(path, [1, "a"]), path);
+    assert.equal(http.query(null, [1, "a"]), '');
+    assert.equal(http.query('', {}), '');
+    assert.equal(http.query([], {}), '');
+    assert.equal(http.query('abc/', new URLSearchParams([['a', 'b']])), 'abc/?a=b');
+  });
+
   describe('dataUrl', () => {
     const PAYLOAD = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
     const MIME = "image/png";

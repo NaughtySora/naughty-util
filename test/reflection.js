@@ -4,7 +4,7 @@ const { reflection, misc } = require('../main');
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 
-describe.only("reflection", () => {
+describe("reflection", () => {
   it('isAsyncFunction', () => {
     assert.ok(reflection.isAsyncFunction(async () => { }));
     assert.ok(!reflection.isAsyncFunction(() => { }));

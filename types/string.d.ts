@@ -8,4 +8,5 @@ export interface UtilsString {
   lower<T extends string>(s: T): Lowercase<T>;
   upper<T extends string>(s: T): Uppercase<T>;
   slug(s: string): string;
+  valid(data: any, length?: number): data is string;
 }

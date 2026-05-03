@@ -139,4 +139,8 @@ export interface UtilsHTTP {
     networkAuthenticationRequired: 511
   };
   dataUrl: DataURL;
+  query(
+    path: string,
+    parameters: Exclude<ConstructorParameters<typeof URLSearchParams>[0], string[][]>,
+  ): string;
 }
