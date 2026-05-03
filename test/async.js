@@ -59,5 +59,17 @@ describe("async", async () => {
       assert.equal(x2Result, 1);
     }
   });
+
+  await it('reject', async () => {
+    try {
+      await Promise.race([async.pause(200), async.reject(100)]);
+    } catch (e) {
+      assert.match(e.message, /Promise reject timeout/);
+    }
+  });
+
+  await it('resolve', async () => {
+    assert.equal(await async.resolve(200, 42), 42);
+  });
 });
 
