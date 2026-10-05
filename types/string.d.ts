@@ -38,9 +38,9 @@ export interface UtilsString {
    * default length: 1;\
    * check condition: data.length >= length;
    * @example
-   * valid('abc')    // true
-   * valid('')       // false
-   * valid('abc', 5) // false
+   * valid("abc")    // true
+   * valid("")       // false
+   * valid("abc", 5) // false
    */
   valid(data: any, length?: number): data is string;
 }

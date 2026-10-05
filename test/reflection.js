@@ -94,4 +94,16 @@ describe("reflection", () => {
     assert.ok(reflection.ctor(""), String);
     assert.ok(reflection.ctor(0n), BigInt);
   });
+
+  it('isPlainObject', () => {
+    assert.ok(reflection.isPlainObject({ a: 1 }));
+    assert.ok(reflection.isPlainObject({ __proto__: null }));
+    assert.ok(reflection.isPlainObject(Object.create(null)));
+    assert.ok(reflection.isPlainObject(Object()));
+    assert.ok(reflection.isPlainObject(new Object()));
+    assert.ok(!reflection.isPlainObject(new Map()));
+    assert.ok(!reflection.isPlainObject(() => { }));
+    assert.ok(!reflection.isPlainObject(new (class { })()));
+    assert.ok(!reflection.isPlainObject([]));
+  });
 });

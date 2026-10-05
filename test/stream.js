@@ -5,7 +5,7 @@ const { stream } = require('../main');
 const { Readable } = require('node:stream');
 const fs = require('node:fs');
 
-describe.only('stream', async () => {
+describe('stream', async () => {
   await it('read', async () => {
     const readable = new Readable();
     readable.push('Hello ');
