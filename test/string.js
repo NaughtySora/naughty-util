@@ -5,7 +5,6 @@ const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 
 describe('string', () => {
-
   it('capitalize', () => {
     assert.equal(string.capitalize('hello'), 'Hello');
     assert.equal(string.capitalize('WORLD'), 'World');

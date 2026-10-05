@@ -1,3 +1,4 @@
+import { PassThrough } from "node:stream";
 
 export interface UtilsStream {
   /**
@@ -21,4 +22,12 @@ export interface UtilsStream {
    * const string = await stream.utf8(file);
    */
   utf8<S extends NodeJS.ReadableStream>(readable: S): Promise<string>;
+  /**
+   * Makes 2 streams from 1 readable stream
+   * @example
+   * const [a, b] = tee(readable);
+   * const aRes = await stream.utf8(a);
+   * const bRes = await stream.utf8(b);
+   */
+  tee<S extends NodeJS.ReadableStream>(readable: S): [PassThrough, PassThrough];
 }

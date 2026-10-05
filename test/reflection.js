@@ -1,6 +1,6 @@
 'use strict';
 
-const { reflection, misc } = require('../main');
+const { reflection } = require('../main');
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 
