@@ -26,7 +26,6 @@ export interface UtilsReflection {
    * isEmpty(null) // true
    * isEmpty(undefined) // true
    */
-  //TODO refname to isNullable when 1.0
   isEmpty<E extends (null | undefined)>(entity: any): entity is E;
   /**
    * @example
