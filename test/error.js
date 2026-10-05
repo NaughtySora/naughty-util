@@ -63,4 +63,33 @@ describe('error', () => {
       cause: toJSON(error0),
     });
   });
+
+  it('throwNullable', () => {
+    assert.throws(() => {
+      error.throwNullable(null);
+    }, { message: 'Value is null or undefined' });
+    const message = "Nullable value error";
+    assert.throws(() => {
+      error.throwNullable(undefined, new Error(message));
+    }, { message });
+    error.throwNullable(1);
+    error.throwNullable({});
+  });
+
+  it('ImplementationError', () => {
+    const cause = new Error("1234");
+    const err = new error.ImplementationError("Impl error", { cause });
+    assert.equal(err.message, "Impl error");
+    assert.deepEqual(err.cause, cause);
+    assert.equal(err.name, "ImplementationError");
+    assert.ok(typeof err.stack === "string");
+
+    const err2 = new error.ImplementationError();
+    assert.equal(err2.message, "Implementation error exception");
+    class AbstractClass { }
+    const ctor = error.ImplementationError.ctor(AbstractClass);
+    assert.equal(ctor.message, `Invalid "${AbstractClass.name}" constructor call`);
+    const method = error.ImplementationError.method(AbstractClass, 'connect');
+    assert.equal(method.message, `"${AbstractClass.name}.connect" is not implemented`);
+  });
 });

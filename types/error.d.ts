@@ -31,8 +31,16 @@ declare class DescriptiveError extends Error {
   constructor(...args: ConstructorParameters<typeof Error>);
 }
 
+declare class ImplementationError extends Error {
+  constructor(...args: ConstructorParameters<typeof Error>);
+  static ctor<C extends { name: string }>(Class: C): ImplementationError;
+  static method<C extends { name: string }>(Class: C, method: string): ImplementationError;
+}
+
 export interface UtilsError {
   DomainError: typeof DomainError;
   DescriptiveError: typeof DescriptiveError;
+  ImplementationError: typeof ImplementationError;
   toJSON<E extends Error>(error: E): any;
+  throwNullable<T>(condition: T, e?: Error): asserts condition is NonNullable<T>;
 }
