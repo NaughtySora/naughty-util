@@ -8,9 +8,43 @@ type Curry = <
     A extends [] ? ReturnType<F> : Curry;
 
 export interface UtilsMisc {
+  /**
+   * identity function
+   * @example
+   * x => x;
+   * id(16); // 16
+   */
   id<T>(entity: T): T;
+  /**
+   * @example
+   * inRange('F', 'A', 'Z'); // true
+   * inRange('F', 'a', 'A'); // false
+   * inRange(25, 1, 128); // true
+   * inRange(25, 1, 16); // false
+   */
   inRange<T extends string | number>(value: T, min: T, max: T): boolean;
+  /**
+   * function composition left to right execution order
+   * @example
+   * const f1 = x => x.toLowerCase();
+   * const f2 = x => `text: ${x}`;
+   * const composition = compose(f1, f2);
+   * // f1 -> f2
+   * const result = composition("Text Sample"); // "text: text sample"
+   */
   compose<F extends Callback>(...fns: F[]): (...params: Parameters<F>) => any;
+  /**
+   * inclusive range iterator\
+   * both start and end are included [start, end]\
+   * start default is 0\
+   * step default is 1
+   *
+   * @example
+   * range(10); // [0, 10];
+   * range(10, 1); // [1, 10];
+   * range(16, 2, 2); // [2, 16]; [2,4,6,8,10,12,14,16]
+   * range(17, 2, 2); // [2, 16]; [2,4,6,8,10,12,14,16]
+   */
   range(end: number, start?: number, step?: number): Generator<number>;
   /**
    * shortcut for fn.bind(null, ...args)

@@ -1,7 +1,9 @@
 # 1.0
 ## Misc
-- make timestamp return ns(10^-9) | micro(10^-6) | ms(10^-3), default to ms
+- make timestamp return ns(10^-9) | micro(10^-6) | ms(10^-3), default to ms,
+make const TIME_MS | TIME_S | TIME_MIC, use strategy [fn1, fn2, fn3].
 - move range and enumerate to iterator utils
+- add curry ability to curried(Call(as symbol), 'param'), will call with parameters
 ## Mixin
 - remove forget cause bad js optimization
 ## Number
@@ -15,3 +17,5 @@
 - rename isEmpty to isNullable
 ## Array
 - add mean(dataset, callback, p)
+## Cache
+- benchmark, test with linked list for keys
