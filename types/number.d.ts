@@ -27,13 +27,13 @@ export interface UtilsNumber {
   /**
    * how much percent does part occupies in amount
    * @example
-   * percentRatio(500, 25) // 5
+   * percentRatio(500, 25); // 5
    */
   percentRatio(amount: number, part: number): number;
   /**
    * how much value is percent of the base
    * @example
-   * percentOf(500, 25) // 125
+   * percentOf(500, 25); // 125
    */
   percentOf(base: number, percent: number): number;
 }

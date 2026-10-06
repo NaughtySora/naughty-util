@@ -97,7 +97,7 @@ describe("http", () => {
       assert.equal(result, URL);
     });
 
-    it('ext', () => {
+    it('mime', () => {
       const result = http.dataUrl.mime(URL);
       assert.equal(result, MIME);
     });

@@ -9,9 +9,8 @@ type Curry = <
 
 export interface UtilsMisc {
   /**
-   * identity function
+   * identity function x => x
    * @example
-   * x => x;
    * id(16); // 16
    */
   id<T>(entity: T): T;
@@ -58,16 +57,13 @@ export interface UtilsMisc {
   /**
    * data projection
    * @example
-   * const person = {
-   *   name: 'John Doe',
-   *   age: 33,
-   *   phone: 123456123,
-   * };
+   * const person = { name: 'John Doe', age: 33, phone: 123456123, };
    * const meta = [
    *   ['name', undefined, x => x.toLowerCase()],
-   *   ['phone', 'mobile']
+   *   ['phone', 'mobile'],
    * ];
-   * projection(meta, person) // { name: 'john doe', mobile: 123456123 };
+   * projection(meta, person);
+   * // { name: 'john doe', mobile: 123456123 };
    */
   projection<T extends [string, string | T, Callback], O extends object>(meta: T[], data: O): any;
   /**
@@ -75,8 +71,8 @@ export interface UtilsMisc {
    * @example
    * const arr = [1,2,3];
    * for(const entry of enumerate(arr)) {
-   *  entry[0] // array element
-   *  entry[1] // index
+   *  entry[0]; // array element
+   *  entry[1]; // index
    * }
    */
   enumerate<T>(iterable: Iterable<T>): Generator<[T, number]>;
@@ -102,8 +98,8 @@ export interface UtilsMisc {
    * precurried (...args) => args.join(":");
    * @example
    * const redisKey = key("redis");
-   * redisKey() // "redis"
-   * redisKey("session", "abc")() // "redis:session:abc"
+   * redisKey(); // "redis"
+   * redisKey("session", "abc")(); // "redis:session:abc"
    */
   key: Key;
   /**

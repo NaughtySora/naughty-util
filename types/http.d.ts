@@ -1,14 +1,65 @@
 interface DataURL {
+  /**
+   *
+   * @example
+   * payload("data:image/png;base64,iVBORw0KGgoAAAANSUhE");
+   * // iVBORw0KGgoAAAANSUhE
+   */
   payload(payload: string): string;
+  /**
+   *
+   * @example
+   * mime("data:image/png;base64,iVBORw0KGgoAAAANSUhE");
+   * // image/png
+   */
   mime(url: string): string;
+  /**
+   *
+   * @example
+   * from("iVBORw0KGgoAAAANSUhE", "image/png");
+   * // "data:image/png;base64,iVBORw0KGgoAAAANSUhE"
+   */
   from(payload: string, mime: string): string;
 }
 
 export interface UtilsHTTP {
+  /**
+   *
+   * @example
+   * parseHost("localhost:8080"); // localhost
+   * parseHost("domain.com"); // domain.com
+   * parseHost(""); // no-host-name-in-http-headers
+   */
   parseHost(host: string): string;
+  /**
+   * @example
+   * parseCookies("a=1;b=2"); // { a: '1', b: '2' }
+   */
   parseCookies(cookie: string): Record<string, string>;
+  /**
+   * Uses URLSearchParams
+   * @example
+   * createParams([["a", "b"]]); // "?a=b"
+   * createParams([["a", "b"], ["c", "d"]]); // "?a=b&c=d"
+   * createParams([{a: "b"}, {c: "d"}]); // "?a=b&c=d"
+   * createParams("?a=b&c=d"); // "?a=b&c=d"
+   * createParams(); // ""
+   * createParams([]); // ""
+   */
   createParams(params: string[][] | Record<string, string> | string | URLSearchParams): string;
+  /**
+   * Uses URLSearchParams
+   * @example
+   * parseParam("a=1&b=2"); // { a: '1', b: '2' }
+   * parseParam("a=1&"); // { a: '1' }
+   */
   parseParams(params: string[][] | Record<string, string> | string | URLSearchParams): Record<string, string>;
+  /**
+   *
+   * @example
+   * parseURL("/user?param=true");
+   * // new URL("http:localhost/user?param=true")
+   */
   parseURL(pathname: string): URL;
   CODES: {
     100: 'Continue',
@@ -139,6 +190,12 @@ export interface UtilsHTTP {
     networkAuthenticationRequired: 511
   };
   dataUrl: DataURL;
+  /**
+   * Uses URLSearchParams
+   * @example
+   * query('/query', { a: 1, c: 'd' });
+   * // '/query?a=1&c=d'
+   */
   query(
     path: string,
     parameters: Exclude<ConstructorParameters<typeof URLSearchParams>[0], string[][]>,

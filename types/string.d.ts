@@ -7,22 +7,19 @@ export interface UtilsString {
   /**
    *
    * @example
-   * const str = "hi!, hello";
-   * console.log(capitalize(str)); // "Hi!, hello"
+   * capitalize("hi!, hello"); // "Hi!, hello"
    */
   capitalize<T extends string>(s: T): CapitalizeWord<T>;
   /**
    *
    * @example
-   * const str = "HI!, hello";
-   * console.log(lower(str)); // "hi!, hello"
+   * lower("HI!, hello"); // "hi!, hello"
    */
   lower<T extends string>(s: T): Lowercase<T>;
   /**
    *
    * @example
-   * const str = "hi!, hello";
-   * console.log(upper(str)); // "HI!, HELLO"
+   * upper("hi!, hello"); // "HI!, HELLO"
    */
   upper<T extends string>(s: T): Uppercase<T>;
   /**
@@ -38,9 +35,9 @@ export interface UtilsString {
    * default length: 1;\
    * check condition: data.length >= length;
    * @example
-   * valid("abc")    // true
-   * valid("")       // false
-   * valid("abc", 5) // false
+   * valid("abc");    // true
+   * valid("");       // false
+   * valid("abc", 5); // false
    */
   valid(data: any, length?: number): data is string;
 }

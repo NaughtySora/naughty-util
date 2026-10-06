@@ -15,7 +15,7 @@ export interface UtilsPalette {
    * that supports ANSI escape sequences
    * @example
    * dye(COLORS.blue, "text"); // will display text as blue
-   * // produces "\x1b[1;34mtext\x1b[0m"
+   * // "\x1b[1;34mtext\x1b[0m"
    */
   dye(color: string, text: string): string;
 }
