@@ -19,3 +19,5 @@ make const TIME_MS | TIME_S | TIME_MIC, use strategy [fn1, fn2, fn3].
 - add mean(dataset, callback, p)
 ## Cache
 - benchmark, test with linked list for keys
+## Cache
+- remove

@@ -62,7 +62,7 @@ describe('date', () => {
   it('midnight', () => {
     const now = Date.now();
     const midnight = date.midnight(now);
-    const expected = new Date().setHours(0, 0, 0, 0);
+    const expected = new Date(now).setHours(0, 0, 0, 0);
     assert.equal(midnight, expected);
 
     assert.throws(() => {
@@ -73,7 +73,7 @@ describe('date', () => {
   it('midnightUTC', () => {
     const now = Date.now();
     const midnight = date.midnightUTC(now);
-    const expected = new Date().setUTCHours(0, 0, 0, 0);
+    const expected = new Date(now).setUTCHours(0, 0, 0, 0);
     assert.equal(midnight, expected);
 
     assert.throws(() => {
