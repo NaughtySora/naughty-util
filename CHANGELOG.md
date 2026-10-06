@@ -139,7 +139,7 @@ prevent mutation fns array and allow to reuse composition
 - test refactor
 - deps update
 
-## [0.7.0] - 2026-10-06
+## [0.8.0] - 2026-10-06
 - Add jsdoc for functions
 - Remove eslint and pretties from dependencies
 - Update types
