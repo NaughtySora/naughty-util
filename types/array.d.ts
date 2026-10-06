@@ -1,6 +1,15 @@
 import { Callback } from "./shared";
 
 export interface UtilsArray {
+  /**
+  * Shortcut for Array.isArray(entity) && entity.length >= N.\
+  * Default N is 1.
+  * @example
+  * isArray([]); // false
+  * isArray([], 0); // true
+  * isArray([1,2,3]); // true
+  * isArray([1,2,3], 5); // false
+  */
   valid(data: any, length?: number): data is Array<any>;
   /**
    * Bind keys to specific indexes of the array.
