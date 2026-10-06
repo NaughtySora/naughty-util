@@ -1,0 +1,17 @@
+# 1.0
+## Misc
+- make timestamp return ns(10^-9) | micro(10^-6) | ms(10^-3), default to ms
+- move range and enumerate to iterator utils
+## Mixin
+- remove forget cause bad js optimization
+## Number
+- rename positiveInt to isPositiveInt
+- change cutFraction to roundTo (value, decimals = PERCENT_BASE)
+- move total and average to array utils
+- rename safe to finite, make input parameters as string
+- rename isSafe to isFinite, make input parameters as string
+- rename percentRatio into percentIn
+## Reflection
+- rename isEmpty to isNullable
+## Array
+- add mean(dataset, callback, p)
