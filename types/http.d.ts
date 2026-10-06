@@ -37,7 +37,7 @@ export interface UtilsHTTP {
    */
   parseCookies(cookie: string): Record<string, string>;
   /**
-   * Uses URLSearchParams
+   * Uses URLSearchParams.
    * @example
    * createParams([["a", "b"]]); // "?a=b"
    * createParams([["a", "b"], ["c", "d"]]); // "?a=b&c=d"
@@ -48,7 +48,7 @@ export interface UtilsHTTP {
    */
   createParams(params: string[][] | Record<string, string> | string | URLSearchParams): string;
   /**
-   * Uses URLSearchParams
+   * Uses URLSearchParams.
    * @example
    * parseParam("a=1&b=2"); // { a: '1', b: '2' }
    * parseParam("a=1&"); // { a: '1' }
@@ -191,7 +191,7 @@ export interface UtilsHTTP {
   };
   dataUrl: DataURL;
   /**
-   * Uses URLSearchParams
+   * Uses URLSearchParams.
    * @example
    * query('/query', { a: 1, c: 'd' });
    * // '/query?a=1&c=d'

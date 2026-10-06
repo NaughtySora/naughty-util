@@ -64,11 +64,11 @@ export interface UtilsError {
    */
   DomainError: typeof DomainError;
   /**
-   * Used with conjunction with DomainError
+   * Used with conjunction with DomainError.
    */
   DescriptiveError: typeof DescriptiveError;
   /**
-   * For designing and prototyping
+   * For designing and prototyping.
    * @example
    * class Abstract {
    *  constructor(){
@@ -83,9 +83,9 @@ export interface UtilsError {
    */
   ImplementationError: typeof ImplementationError;
   /**
-   * if error has no toJSON method will\
+   * If error has no toJSON method will\
    * recursively return message, stack, and cause.\
-   * Otherwise call error.toJSON();
+   * Otherwise call error.toJSON().
    */
   toJSON<E extends Error>(error: E): any;
   /**

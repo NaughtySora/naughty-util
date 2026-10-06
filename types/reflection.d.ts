@@ -59,7 +59,7 @@ export interface UtilsReflection {
    */
   isFalsy<T extends any>(entity: T): entity is Exclude<T, Falsy>;
   /**
-   * Errors from different environments might not work
+   * Errors from different environments might not work.
    * @example
    * class E extends Error {}
    * isError(new Error()); // true
@@ -94,8 +94,8 @@ export interface UtilsReflection {
   */
   isPlainObject(entity: unknown): boolean;
   /**
-  * shortcut for Array.isArray(entity) && entity.length >= N\
-  * default N is 1
+  * Shortcut for Array.isArray(entity) && entity.length >= N.\
+  * Default N is 1.
   * @example
   * isArray([]); // false
   * isArray([], 0); // true
@@ -104,7 +104,7 @@ export interface UtilsReflection {
   */
   isArray: UtilsArray["valid"];
   /**
-  * Get constructor of the target
+  * Get constructor of the target.
   * @example
   * ctor(1); // Number
   * ctor(""); // String

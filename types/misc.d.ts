@@ -9,7 +9,7 @@ type Curry = <
 
 export interface UtilsMisc {
   /**
-   * identity function x => x
+   * Identity function x => x.
    * @example
    * id(16); // 16
    */
@@ -23,7 +23,7 @@ export interface UtilsMisc {
    */
   inRange<T extends string | number>(value: T, min: T, max: T): boolean;
   /**
-   * function composition left to right execution order
+   * Function composition left to right execution order.
    * @example
    * const f1 = x => x.toLowerCase();
    * const f2 = x => `text: ${x}`;
@@ -33,10 +33,10 @@ export interface UtilsMisc {
    */
   compose<F extends Callback>(...fns: F[]): (...params: Parameters<F>) => any;
   /**
-   * inclusive range iterator\
-   * both start and end are included [start, end]\
-   * start default is 0\
-   * step default is 1
+   * Inclusive range iterator.\
+   * Both start and end are included [start, end].\
+   * Start default is 0.\
+   * Step default is 1.
    *
    * @example
    * range(10); // [0, 10];
@@ -46,7 +46,7 @@ export interface UtilsMisc {
    */
   range(end: number, start?: number, step?: number): Generator<number>;
   /**
-   * shortcut for fn.bind(null, ...args)
+   * Shortcut for fn.bind(null, ...args).
    * @example
    * const max = (a, b) => a >= b ? a : b;
    * const bounded = partial(max, 42);
@@ -55,7 +55,7 @@ export interface UtilsMisc {
    */
   partial<F extends Callback>(fn: F, ...params: Partial<Parameters<F>>): (...params: any) => any;
   /**
-   * data projection
+   * Data projection.
    * @example
    * const person = { name: 'John Doe', age: 33, phone: 123456123, };
    * const meta = [
@@ -67,7 +67,7 @@ export interface UtilsMisc {
    */
   projection<T extends [string, string | T, Callback], O extends object>(meta: T[], data: O): any;
   /**
-   * enumerate iterable sequence
+   * Enumerate iterable sequence.
    * @example
    * const arr = [1,2,3];
    * for(const entry of enumerate(arr)) {
@@ -77,12 +77,12 @@ export interface UtilsMisc {
    */
   enumerate<T>(iterable: Iterable<T>): Generator<[T, number]>;
   /**
-   * random integer generated based on Math.random()\
-   * doesn't provide crypto safe random generator
+   * Random integer generated based on Math.random()\
+   * doesn't provide crypto safe random generator.
    */
   random(max: number, min?: number): number;
   /**
-   * measures time with high resolution time
+   * Measures time with high resolution time.
    * @example
    * const end = timestamp();
    * // do work
@@ -90,12 +90,12 @@ export interface UtilsMisc {
    */
   timestamp(): () => { nanoseconds: bigint, seconds: number };
   /**
-   * non-crypto random sequence of characters\
-   * Usually for quick testing, prototyping, etc
+   * Non-crypto random sequence of characters\
+   * Usually for quick testing, prototyping, etc.
    */
   unique(): string;
   /**
-   * precurried (...args) => args.join(":");
+   * precurried (...args) => args.join(":").
    * @example
    * const redisKey = key("redis");
    * redisKey(); // "redis"
@@ -103,7 +103,7 @@ export interface UtilsMisc {
    */
   key: Key;
   /**
-   * Creates new function each time calls with parameters
+   * Creates new function each time calls with parameters.
    * @example
    * const a = (a,b,c) => a+b+c;
    * const curried = curry(a);

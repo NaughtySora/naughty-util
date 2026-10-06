@@ -32,8 +32,8 @@ export interface UtilsString {
    */
   slug(s: string): string;
   /**
-   * default length: 1;\
-   * check condition: data.length >= length;
+   * Default length: 1.\
+   * Check condition: data.length >= length.
    * @example
    * valid("abc");    // true
    * valid("");       // false
