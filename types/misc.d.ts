@@ -29,7 +29,7 @@ export interface UtilsMisc {
    * const f2 = x => `text: ${x}`;
    * const composition = compose(f1, f2);
    * // f1 -> f2
-   * const result = composition("Text Sample"); // "text: text sample"
+   * composition("Text Sample"); // "text: text sample"
    */
   compose<F extends Callback>(...fns: F[]): (...params: Parameters<F>) => any;
   /**
