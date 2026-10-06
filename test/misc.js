@@ -20,10 +20,18 @@ describe("misc", async () => {
 
   it("compose", () => {
     const mock = [
-      [() => 13, x => x ** 2, x => x / 2, x => String(x)],
-      [(s, delimiter) => `${delimiter}${s}${delimiter}`, (s) => s.length, length => length / 2]
+      [
+        () => 13,
+        x => x ** 2,
+        x => x / 2,
+        String
+      ],
+      [
+        (s, delimiter) => `${delimiter}${s}${delimiter}`,
+        (s) => s.length, length => length / 2
+      ]
     ];
-    const params = [[undefined], ['Hello', '---']]
+    const params = [[], ['Hello', '---']]
     const expected = ['84.5', 5.5];
 
     for (let i = 0; i < mock.length; i++) {

@@ -34,4 +34,16 @@ describe('stream', async () => {
     const utf8 = await stream.utf8(readable);
     assert.equal(utf8, 'Hello World!');
   });
+
+  await it("tee", async () => {
+    const readable = new Readable();
+    readable.push('Hello ');
+    readable.push('World');
+    readable.push('!');
+    readable.push(null);
+    const [a, b] = stream.tee(readable);
+    const aRes = await stream.utf8(a);
+    const bRes = await stream.utf8(b);
+    assert.equal(aRes, bRes);
+  })
 });

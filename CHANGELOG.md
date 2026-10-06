@@ -139,3 +139,15 @@ prevent mutation fns array and allow to reuse composition
 - test refactor
 - deps update
 
+## [0.7.0] - 2026-10-06
+- Add jsdoc for functions
+- Remove eslint and pretties from dependencies
+- Update types
+- Add ImplementationError and throwIfNullable to errors
+- Add isPlainObject and expose to reflection
+- Change behavior of inspect
+- Add TODO list for version 1.0
+- Add tee to streams
+- Refactor old functions
+- Fix test bug with createParams
+- Deprecate Cache and mixin forget

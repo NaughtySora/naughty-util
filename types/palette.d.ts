@@ -10,5 +10,12 @@ export interface UtilsPalette {
     white: string;
   }>;
   CLEAN: string;
+  /**
+   * Dye text to display in terminal emulator \
+   * that supports ANSI escape sequences.
+   * @example
+   * dye(COLORS.blue, "text"); // will display text as blue
+   * // "\x1b[1;34mtext\x1b[0m"
+   */
   dye(color: string, text: string): string;
 }

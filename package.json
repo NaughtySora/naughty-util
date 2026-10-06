@@ -1,6 +1,6 @@
 {
   "name": "naughty-util",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": "NaughtySora <naughtysora@proton.me>",
   "license": "MIT",
   "description": "Util functions for node.js",
@@ -25,9 +25,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "c8 node ./test/index.js",
-    "pretty-check": "npx prettier . --check",
-    "lint": "npx eslint ."
+    "test": "c8 node ./test/index.js"
   },
   "repository": {
     "type": "git",
@@ -38,13 +36,8 @@
     "email": "naughtysora@proton.me"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^8.59.0",
-    "@typescript-eslint/parser": "^8.59.0",
-    "typescript-eslint": "^8.59.0",
-    "@types/node": "^25.6.0",
-    "c8": "^11.0.0",
-    "eslint": "^10.3.0",
-    "typescript": "^6.0.3"
+    "@types/node": "^26.6.4",
+    "c8": "^12.0.0",
+    "typescript": "^7.0.2"
   }
 }
